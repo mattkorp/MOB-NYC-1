@@ -393,6 +393,7 @@
 				888D13EA1A5DB1A000EF265D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		888D13EB1A5DB1A000EF265D /* Build configuration list for PBXNativeTarget "ProgrammaticViewsTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +402,7 @@
 				888D13ED1A5DB1A000EF265D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
