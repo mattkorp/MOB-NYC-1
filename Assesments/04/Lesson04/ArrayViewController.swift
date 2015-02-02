@@ -19,6 +19,8 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var tableArray = [String]()
     var userInputField = UITextField()
     
+    let swipeGesture = UISwipeGestureRecognizer()
+    
     var minX = CGFloat()
     var minY = CGFloat()
     var width = CGFloat()
@@ -50,6 +52,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         setupNavBar()
         setupTableView()
         setupTextField()
+        setupSwipeToMap()
     }
     
     override func supportedInterfaceOrientations() -> Int {
@@ -59,14 +62,14 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: NavBar
     
     func setupNavBar() {
-        let nextBarButton = UIBarButtonItem(title: "Map", style: .Plain, target: self, action: "mapButtonPressed")
+        let nextBarButton = UIBarButtonItem(title: "Map", style: .Plain, target: self, action: "pushMapViewController")
         self.navigationItem.rightBarButtonItem = nextBarButton
         let saveBarButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveToPlist")
         self.navigationItem.leftBarButtonItem = saveBarButton
         self.navigationItem.title = "Array"
     }
     
-    func mapButtonPressed() {
+    func pushMapViewController() {
         // TODO: Is this the best way to get Orientation?
         var frame = CGRect()
         var orientation = UIDevice.currentDevice().orientation
@@ -86,6 +89,13 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             var alert = UIAlertView(title: "Error!", message: "Cannot Save Array Data", delegate: self, cancelButtonTitle: ":(")
             alert.show()
         }
+    }
+    
+    func setupSwipeToMap() {
+        swipeGesture.addTarget(self, action: "pushMapViewController")
+        swipeGesture.direction = .Left
+        tableView.addGestureRecognizer(swipeGesture)
+        tableView.userInteractionEnabled = true
     }
     
     // MARK: TextField
@@ -152,7 +162,5 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-    
-    
 }
 

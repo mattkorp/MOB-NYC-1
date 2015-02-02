@@ -25,6 +25,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var valueTextField = UITextField()
     var keyValueDictionaryArray = OrderedDictionary<String,String>()
     var enterButton = UIButton()
+    var swipeGesture = UISwipeGestureRecognizer()
     
     var minX = CGFloat()
     var minY = CGFloat()
@@ -64,6 +65,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         setupTableView()
         setupUserInputFields()
         setupInputFieldsConstraints()
+        setupSwipeToArray()
         
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidShowNotification, object: nil, queue: nil) { (notification: NSNotification!) -> Void in
             self.keyTextField.backgroundColor = self.backgroundColorKeyboardShow
@@ -85,6 +87,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorInset = UIEdgeInsetsZero
+        // Travis suggestion to make TV.separator invisible and add cell.layer.border. Can't get it to look how i want, so went with EdgeInsets instead. see willDisplayCell:
         //tableView.separatorColor = UIColor.clearColor()
         //tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.view.addSubview(tableView)
@@ -223,6 +226,17 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         tableView.tableHeaderView?.addConstraints([keyTextTop, keyTextBottom, valueTextTop, valueTextBottom, enterButtonTop, enterButtonBottom])
         
+    }
+    
+    func setupSwipeToArray() {
+        swipeGesture.addTarget(self, action: Selector("swipeToArray"))
+        swipeGesture.direction = .Right
+        tableView.addGestureRecognizer(swipeGesture)
+        tableView.userInteractionEnabled = true
+    }
+    
+    func swipeToArray() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func enterButtonPressed() {

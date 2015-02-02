@@ -33,6 +33,5 @@ class ArrayData {
         var data = NSArray(array: data as NSArray)
         return data.writeToFile(path, atomically: true) ? true : false
 
-        
     }
 }
