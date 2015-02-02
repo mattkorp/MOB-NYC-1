@@ -11,7 +11,7 @@ import UIKit
 
 class ArrayData {
     
-    var dataIn: [String]?
+    private var dataIn: [String]?
     
     init() {}
     

@@ -20,37 +20,31 @@ import UIKit
 
 class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
-    var tableView = UITableView()
-    var keyTextField = UITextField()
-    var valueTextField = UITextField()
-    var keyValueDictionaryArray = OrderedDictionary<String,String>()
-    var enterButton = UIButton()
-    var swipeGesture = UISwipeGestureRecognizer()
+    private var tableView = UITableView()
+    private var keyTextField = UITextField()
+    private var keyTextFieldPlaceHolder = " KEY"
+    private var valueTextField = UITextField()
+    private var valueTextFieldPlaceHoler = " VALUE"
+    private var keyValueDictionaryArray = OrderedDictionary<String,String>()
+    private var enterButton = UIButton()
+    private var tapGesture = UITapGestureRecognizer()
+    private var swipeGesture = UISwipeGestureRecognizer()
     
+    var frame = CGRect()
     var minX = CGFloat()
     var minY = CGFloat()
     var width = CGFloat()
     var height = CGFloat()
     
-    var rowHeight: CGFloat = 40
-    var backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
-    var backgroundColorKeyboardShow = UIColor(red:0.46, green:0.86, blue:1, alpha:1)
-    var backgroundColorKeyboardHide = UIColor(red:1, green:0.41, blue:0.33, alpha:1)
+    private var rowHeight: CGFloat = 40
+    private var backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
+    private var backgroundColorKeyboardShow = UIColor(red:0.46, green:0.86, blue:1, alpha:1)
+    private var backgroundColorKeyboardHide = UIColor(red:1, green:0.41, blue:0.33, alpha:1)
         
     // MARK: Init
     
     override init() {
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    init(frame: CGRect) {
-        super.init(nibName: nil, bundle: nil)
-        
-        minX = frame.minX
-        minY = frame.minY
-        width = frame.width
-        height = frame.height
-        
         self.navigationItem.title = "Map"
     }
     
@@ -66,7 +60,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         setupUserInputFields()
         setupInputFieldsConstraints()
         setupSwipeToArray()
-        
+        // TODO
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidShowNotification, object: nil, queue: nil) { (notification: NSNotification!) -> Void in
             self.keyTextField.backgroundColor = self.backgroundColorKeyboardShow
             self.valueTextField.backgroundColor = self.backgroundColorKeyboardShow
@@ -79,7 +73,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView = UITableView(frame: CGRect(x: minX, y: minY, width: width, height: height))
         tableView.tableHeaderView = UIView(frame: CGRect(x: minX, y: minY, width: width, height: rowHeight))
         tableView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
@@ -87,13 +81,17 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorInset = UIEdgeInsetsZero
-        // Travis suggestion to make TV.separator invisible and add cell.layer.border. Can't get it to look how i want, so went with EdgeInsets instead. see willDisplayCell:
+        // Travis suggestion to make TV.separator invisible and add cell.layer.border to make cell wall continuous. Can't get it to look how i want, so went with EdgeInsets instead. see willDisplayCell:
         //tableView.separatorColor = UIColor.clearColor()
         //tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        // Dismiss keyboard if active and unused cell is tapped
+        tapGesture.addTarget(self, action: Selector("dismissKeyboardIfActive"))
+        tableView.addGestureRecognizer(tapGesture)
+        tableView.userInteractionEnabled = true
         self.view.addSubview(tableView)
     }
     
-    func setupUserInputFields() {
+    private func setupUserInputFields() {
         var textFieldWidth = (width / 2) - rowHeight
         var valueX = minX + (textFieldWidth / 2)
         var buttonX = minX + textFieldWidth
@@ -102,7 +100,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         keyTextField.delegate = self
         keyTextField.borderStyle = UITextBorderStyle.Line
         keyTextField.backgroundColor = UIColor.lightGrayColor()
-        keyTextField.placeholder = " KEY"
+        keyTextField.placeholder = keyTextFieldPlaceHolder
         keyTextField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
         keyTextField.layer.cornerRadius = 10
         keyTextField.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -111,7 +109,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         valueTextField.delegate = self
         valueTextField.borderStyle = UITextBorderStyle.Line
         valueTextField.backgroundColor = UIColor.lightGrayColor()
-        valueTextField.placeholder = " VALUE"
+        valueTextField.placeholder = valueTextFieldPlaceHoler
         valueTextField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
         valueTextField.layer.cornerRadius = 10
         valueTextField.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -129,7 +127,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         tableView.tableHeaderView?.addSubview(enterButton)
     }
     
-    func setupInputFieldsConstraints() {
+    private func setupInputFieldsConstraints() {
         // Horizontal Layout
         var keyTextLeft = NSLayoutConstraint(
             item: keyTextField,
@@ -228,18 +226,18 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
     }
     
-    func setupSwipeToArray() {
+    private func setupSwipeToArray() {
         swipeGesture.addTarget(self, action: Selector("swipeToArray"))
         swipeGesture.direction = .Right
         tableView.addGestureRecognizer(swipeGesture)
         tableView.userInteractionEnabled = true
     }
     
-    func swipeToArray() {
+    internal func swipeToArray() {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    func enterButtonPressed() {
+    internal func enterButtonPressed() {
         if (keyTextField.text.isEmpty | valueTextField.text.isEmpty) {
             UIAlertView(title: "Hey!", message: "Must add input to KEY and VALUE fields", delegate: self, cancelButtonTitle: "OK").show()
         } else {
@@ -252,17 +250,30 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
+    internal func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if (textField.placeholder == keyTextFieldPlaceHolder && valueTextField.text.isEmpty) {
+            valueTextField.becomeFirstResponder()
+            return true
+        } else if (textField.placeholder == valueTextFieldPlaceHoler && keyTextField.text.isEmpty){
+            keyTextField.becomeFirstResponder()
+            return true
+        } else {
+            textField.resignFirstResponder()
+            return true
+        }
+    }
+    
     // MARK: Table View
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    internal func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return keyValueDictionaryArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("Map") as? UITableViewCell ?? UITableViewCell(style: .Value1, reuseIdentifier: "Map")
         let row = indexPath.row
         cell.textLabel?.text = keyValueDictionaryArray.keys[row]
@@ -274,7 +285,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         // Needed to customize cell edge insets to expand across the screen
         cell.separatorInset = UIEdgeInsetsZero
         cell.superview?.preservesSuperviewLayoutMargins = false
@@ -282,12 +293,28 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
        // cell.layer.borderWidth = 1
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            // TODO: Delete from Ordered Dict.  Maybe create a temp then copy to original, or add removeAtIndex method to OrdDict?
-            //tableArray.removeAtIndex(indexPath.row)
-            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//    internal func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+//            // TODO: Delete from Ordered Dict.  Maybe create a temp then copy to original, or add removeAtIndex method to OrdDict?
+//            //tableArray.removeAtIndex(indexPath.row)
+//            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//        }
+//    }
+    
+    internal func dismissKeyboardIfActive() {
+        if keyTextField.isFirstResponder() {
+            keyTextField.resignFirstResponder()
+        } else if valueTextField.isFirstResponder() {
+            valueTextField.resignFirstResponder()
         }
+    }
+    
+    // MARK: Public Methods
+    func setFrame(frame: CGRect) {
+        minX = frame.minX
+        minY = frame.minY
+        width = frame.width
+        height = frame.height
     }
 }
 

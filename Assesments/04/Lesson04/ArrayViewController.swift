@@ -12,21 +12,23 @@ import UIKit
 
 class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    var savedElements: [String]?
-    
-    var fileManager = ArrayData()
-    var tableView = UITableView()
-    var tableArray = [String]()
-    var userInputField = UITextField()
-    
-    let swipeGesture = UISwipeGestureRecognizer()
-    
-    var minX = CGFloat()
-    var minY = CGFloat()
-    var width = CGFloat()
-    var height = CGFloat()
-    var rowHeight: CGFloat = 40
-    var backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
+    // make map a property so it persists
+    private var mapViewController = MapViewController()
+    // data class for reading & saving to plist
+    private var fileManager = ArrayData()
+    private var tableView = UITableView()
+    // cell data array
+    private var tableArray = [String]()
+    private var userInputField = UITextField()
+    // to swipe to MapVC
+    private let swipeGesture = UISwipeGestureRecognizer()
+
+    private var minX = CGFloat()
+    private var minY = CGFloat()
+    private var width = CGFloat()
+    private var height = CGFloat()
+    private var rowHeight: CGFloat = 40
+    private var backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
     
     // MARK: View
     
@@ -37,7 +39,6 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         minY = frame.minY
         width = frame.width
         height = frame.height
-        
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -61,7 +62,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: NavBar
     
-    func setupNavBar() {
+    private func setupNavBar() {
         let nextBarButton = UIBarButtonItem(title: "Map", style: .Plain, target: self, action: "pushMapViewController")
         self.navigationItem.rightBarButtonItem = nextBarButton
         let saveBarButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveToPlist")
@@ -69,7 +70,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.title = "Array"
     }
     
-    func pushMapViewController() {
+    internal func pushMapViewController() {
         // TODO: Is this the best way to get Orientation?
         var frame = CGRect()
         var orientation = UIDevice.currentDevice().orientation
@@ -78,10 +79,11 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else if UIDeviceOrientationIsLandscape(orientation) {
             frame = CGRect(x: minX, y: minY, width: height, height: width)
         }
-        self.navigationController?.pushViewController(MapViewController(frame: frame), animated: true)
+        mapViewController.setFrame(frame)
+        self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     
-    func saveToPlist() {
+    internal func saveToPlist() {
         if fileManager.writeData(tableArray) {
             var alert = UIAlertView(title: "Success!", message: "Table Data Saved To File", delegate: self, cancelButtonTitle: ":)")
             alert.show()
@@ -91,7 +93,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func setupSwipeToMap() {
+    private func setupSwipeToMap() {
         swipeGesture.addTarget(self, action: "pushMapViewController")
         swipeGesture.direction = .Left
         tableView.addGestureRecognizer(swipeGesture)
@@ -100,7 +102,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: TextField
     
-    func setupTextField() {
+    private func setupTextField() {
         userInputField = UITextField(frame: CGRectMake(0, 0, width, rowHeight))
         userInputField.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         userInputField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
@@ -111,7 +113,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.tableHeaderView?.addSubview(userInputField)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(textField: UITextField) -> Bool {
         tableArray.append(userInputField.text)
         userInputField.text = ""
         userInputField.resignFirstResponder()
@@ -121,7 +123,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: TableView Management
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView = UITableView(frame: CGRect(x: minX, y: minY, width: width, height: height))
         tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, width, rowHeight))
         tableView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
@@ -133,15 +135,15 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.addSubview(tableView)
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    internal func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Array") as? UITableViewCell ?? UITableViewCell(style: .Default, reuseIdentifier: "Array")
         let row = indexPath.row
         cell.textLabel?.text = tableArray[indexPath.row]
@@ -150,13 +152,13 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
 
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    internal func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.separatorInset = UIEdgeInsetsZero
         cell.superview?.preservesSuperviewLayoutMargins = false
         cell.layoutMargins = UIEdgeInsetsZero
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    internal func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             tableArray.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
