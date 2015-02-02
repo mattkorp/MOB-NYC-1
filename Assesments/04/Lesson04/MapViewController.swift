@@ -284,7 +284,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         var cell = tableView.dequeueReusableCellWithIdentifier("Map") as? UITableViewCell ?? UITableViewCell(style: .Value1, reuseIdentifier: "Map")
         let row = indexPath.row
         cell.textLabel?.text = keyValueDictionaryArray.keys[row]
-        cell.detailTextLabel?.text = keyValueDictionaryArray[keyValueDictionaryArray.keys[row]]!
+        if let value = keyValueDictionaryArray[keyValueDictionaryArray.keys[row]] {
+            cell.detailTextLabel?.text = value
+        }
         cell.backgroundColor = backgroundColor
         cell.textLabel?.textColor = UIColor.whiteColor()
 
