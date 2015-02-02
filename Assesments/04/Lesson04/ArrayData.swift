@@ -22,7 +22,7 @@ class ArrayData {
         return dataIn
     }
     
-    func writeData(data:[String]) -> Bool {
+    func writeData(data:[String]) -> Bool? {
         var docsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         var path = docsDirectory.stringByAppendingPathComponent("array.plist")
         var fileManager = NSFileManager.defaultManager()

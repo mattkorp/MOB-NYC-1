@@ -49,7 +49,9 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableArray = fileManager.readData()!
+        if let dataIn = fileManager.readData() {
+            self.tableArray = dataIn
+        }
         setupNavBar()
         setupTableView()
         setupTextField()
@@ -84,12 +86,20 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     internal func saveToPlist() {
-        if fileManager.writeData(tableArray) {
-            var alert = UIAlertView(title: "Success!", message: "Table Data Saved To File", delegate: self, cancelButtonTitle: ":)")
-            alert.show()
+        if let success = fileManager.writeData(tableArray) {
+            UIAlertView(
+                title: "Success!",
+                message: "Table Data Saved To File",
+                delegate: self,
+                cancelButtonTitle: ":)")
+                .show()
         } else {
-            var alert = UIAlertView(title: "Error!", message: "Cannot Save Array Data", delegate: self, cancelButtonTitle: ":(")
-            alert.show()
+            UIAlertView(
+                title: "Error!",
+                message: "Cannot Save Array Data",
+                delegate: self,
+                cancelButtonTitle: ":(")
+                .show()
         }
     }
     
