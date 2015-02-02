@@ -226,12 +226,16 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func enterButtonPressed() {
-        keyValueDictionaryArray[keyTextField.text] = valueTextField.text
-        keyTextField.text = ""
-        keyTextField.resignFirstResponder()
-        valueTextField.text = ""
-        valueTextField.resignFirstResponder()
-        tableView.reloadData()
+        if (keyTextField.text.isEmpty | valueTextField.text.isEmpty) {
+            UIAlertView(title: "Hey!", message: "Must add input to KEY and VALUE fields", delegate: self, cancelButtonTitle: "OK").show()
+        } else {
+            keyValueDictionaryArray[keyTextField.text] = valueTextField.text
+            keyTextField.text = ""
+            keyTextField.resignFirstResponder()
+            valueTextField.text = ""
+            valueTextField.resignFirstResponder()
+            tableView.reloadData()
+        }
     }
     
     // MARK: Table View

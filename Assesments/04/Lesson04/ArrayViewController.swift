@@ -98,7 +98,10 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             fileManager.copyItemAtPath(bundle, toPath: path, error: nil)
         }
         var data = NSArray(array: tableArray as NSArray)
-        data.writeToFile(path, atomically: true)
+        if data.writeToFile(path, atomically: true) {
+            var alert = UIAlertView(title: "Success!", message: "Table Data Saved To File", delegate: self, cancelButtonTitle: ":)")
+            alert.show()
+        }
     }
     
     // MARK: TextField
