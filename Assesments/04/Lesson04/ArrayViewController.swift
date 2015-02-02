@@ -14,6 +14,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var savedElements: [String]?
     
+    var fileManager = ArrayData()
     var tableView = UITableView()
     var tableArray = [String]()
     var userInputField = UITextField()
@@ -45,26 +46,14 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        readPlist()
+        self.tableArray = fileManager.readData()!
         setupNavBar()
         setupTableView()
         setupTextField()
-    
-        tableView.reloadData()
-    
     }
     
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.All.rawValue)
-    }
-    
-    func readPlist() {
-        var docsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-        var path = docsDirectory.stringByAppendingPathComponent("array.plist")
-        if let dataIn = NSArray(contentsOfFile: path) {
-            tableArray = dataIn as [String]
-        }
-    
     }
     
     // MARK: NavBar
@@ -90,16 +79,11 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func saveToPlist() {
-        var docsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-        var path = docsDirectory.stringByAppendingPathComponent("array.plist")
-        var fileManager = NSFileManager.defaultManager()
-        if (!fileManager.fileExistsAtPath(path)) {
-            var bundle: NSString = NSBundle.mainBundle().pathForResource("array", ofType: "plist")!
-            fileManager.copyItemAtPath(bundle, toPath: path, error: nil)
-        }
-        var data = NSArray(array: tableArray as NSArray)
-        if data.writeToFile(path, atomically: true) {
+        if fileManager.writeData(tableArray) {
             var alert = UIAlertView(title: "Success!", message: "Table Data Saved To File", delegate: self, cancelButtonTitle: ":)")
+            alert.show()
+        } else {
+            var alert = UIAlertView(title: "Error!", message: "Cannot Save Array Data", delegate: self, cancelButtonTitle: ":(")
             alert.show()
         }
     }
@@ -138,7 +122,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
         self.view.addSubview(tableView)
     }
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
