@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46AEF2051A7DF94600E5039A /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AEF2041A7DF94600E5039A /* OrderedDictionary.swift */; };
+		46CA51631A7FDAE60001EB43 /* ArrayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CA51621A7FDAE60001EB43 /* ArrayData.swift */; };
 		5DCED9BB19D8E50600DE1DC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCED9BA19D8E50600DE1DC2 /* AppDelegate.swift */; };
 		5DCED9BD19D8E50600DE1DC2 /* ArrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCED9BC19D8E50600DE1DC2 /* ArrayViewController.swift */; };
 		5DCED9C219D8E50600DE1DC2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DCED9C119D8E50600DE1DC2 /* Images.xcassets */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		46AEF2041A7DF94600E5039A /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		46CA51621A7FDAE60001EB43 /* ArrayData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayData.swift; sourceTree = "<group>"; };
 		5DCED9B519D8E50600DE1DC2 /* Lesson04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCED9B919D8E50600DE1DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DCED9BA19D8E50600DE1DC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		5DCED9B719D8E50600DE1DC2 /* Lesson04 */ = {
 			isa = PBXGroup;
 			children = (
+				46CA51621A7FDAE60001EB43 /* ArrayData.swift */,
 				5DCED9DA19D8E6DF00DE1DC2 /* MapViewController.swift */,
 				5DCED9BC19D8E50600DE1DC2 /* ArrayViewController.swift */,
 				46AEF2041A7DF94600E5039A /* OrderedDictionary.swift */,
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46CA51631A7FDAE60001EB43 /* ArrayData.swift in Sources */,
 				5DCED9BD19D8E50600DE1DC2 /* ArrayViewController.swift in Sources */,
 				46AEF2051A7DF94600E5039A /* OrderedDictionary.swift in Sources */,
 				5DCED9DB19D8E6DF00DE1DC2 /* MapViewController.swift in Sources */,
