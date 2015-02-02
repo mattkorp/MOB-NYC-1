@@ -60,17 +60,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         setupUserInputFields()
         setupInputFieldsConstraints()
         setupSwipeToArray()
-        // TODO
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidShowNotification, object: nil, queue: nil) { (notification: NSNotification!) -> Void in
-            self.keyTextField.backgroundColor = self.backgroundColorKeyboardShow
-            self.valueTextField.backgroundColor = self.backgroundColorKeyboardShow
-        }
-
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidHideNotification, object: nil, queue: nil) { (notification: NSNotification!) -> Void in
-            self.keyTextField.backgroundColor = self.backgroundColorKeyboardHide
-            self.valueTextField.backgroundColor = self.backgroundColorKeyboardHide
-        }
-        
+        setupNotificationObservers()
     }
     
     private func setupTableView() {
@@ -235,6 +225,18 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     internal func swipeToArray() {
         self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    private func setupNotificationObservers() {
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidShowNotification, object: nil, queue: nil) { (notification: NSNotification!) -> Void in
+            self.keyTextField.backgroundColor = self.backgroundColorKeyboardShow
+            self.valueTextField.backgroundColor = self.backgroundColorKeyboardShow
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardDidHideNotification, object: nil, queue: nil) { (notification: NSNotification!) -> Void in
+            self.keyTextField.backgroundColor = self.backgroundColorKeyboardHide
+            self.valueTextField.backgroundColor = self.backgroundColorKeyboardHide
+        }
     }
     
     internal func enterButtonPressed() {
