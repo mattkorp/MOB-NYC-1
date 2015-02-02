@@ -27,8 +27,8 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var minY = CGFloat()
     private var width = CGFloat()
     private var height = CGFloat()
-    private var rowHeight: CGFloat = 40
-    private var backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
+    private let rowHeight: CGFloat = 40
+    private let backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
     
     // MARK: View
     
@@ -75,7 +75,7 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     internal func pushMapViewController() {
         // TODO: Is this the best way to get Orientation?
         var frame = CGRect()
-        var orientation = UIDevice.currentDevice().orientation
+        let orientation = UIDevice.currentDevice().orientation
         if UIDeviceOrientationIsPortrait(orientation) {
             frame = CGRect(x: minX, y: minY, width: width, height: height)
         } else if UIDeviceOrientationIsLandscape(orientation) {

@@ -22,24 +22,24 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     private var tableView = UITableView()
     private var keyTextField = UITextField()
-    private var keyTextFieldPlaceHolder = " KEY"
+    private let keyTextFieldPlaceHolder = " KEY"
     private var valueTextField = UITextField()
-    private var valueTextFieldPlaceHoler = " VALUE"
+    private let valueTextFieldPlaceHoler = " VALUE"
     private var keyValueDictionaryArray = OrderedDictionary<String,String>()
     private var enterButton = UIButton()
     private var tapGesture = UITapGestureRecognizer()
     private var swipeGesture = UISwipeGestureRecognizer()
     
-    var frame = CGRect()
+    let frame = CGRect()
     var minX = CGFloat()
     var minY = CGFloat()
     var width = CGFloat()
     var height = CGFloat()
     
-    private var rowHeight: CGFloat = 40
-    private var backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
-    private var backgroundColorKeyboardShow = UIColor(red:0.46, green:0.86, blue:1, alpha:1)
-    private var backgroundColorKeyboardHide = UIColor(red:1, green:0.41, blue:0.33, alpha:1)
+    private let rowHeight: CGFloat = 40
+    private let backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
+    private let backgroundColorKeyboardShow = UIColor(red:0.46, green:0.86, blue:1, alpha:1)
+    private let backgroundColorKeyboardHide = UIColor(red:1, green:0.41, blue:0.33, alpha:1)
         
     // MARK: Init
     
@@ -82,9 +82,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     private func setupUserInputFields() {
-        var textFieldWidth = (width / 2) - rowHeight
-        var valueX = minX + (textFieldWidth / 2)
-        var buttonX = minX + textFieldWidth
+        let textFieldWidth = (width / 2) - rowHeight
+        let valueX = minX + (textFieldWidth / 2)
+        let buttonX = minX + textFieldWidth
         
         keyTextField = UITextField(frame: CGRect(x: minX, y: minY, width: textFieldWidth, height: rowHeight))
         keyTextField.delegate = self
@@ -119,7 +119,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     private func setupInputFieldsConstraints() {
         // Horizontal Layout
-        var keyTextLeft = NSLayoutConstraint(
+        let keyTextLeft = NSLayoutConstraint(
             item: keyTextField,
             attribute: .Left,
             relatedBy: .Equal,
@@ -127,7 +127,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Left,
             multiplier: 1.0,
             constant: 0.0)
-        var valueTextLeft = NSLayoutConstraint(
+        let valueTextLeft = NSLayoutConstraint(
             item: valueTextField,
             attribute: .Left,
             relatedBy: .Equal,
@@ -135,7 +135,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Right,
             multiplier: 1.0,
             constant: 0.0)
-        var valueTextRight = NSLayoutConstraint(
+        let valueTextRight = NSLayoutConstraint(
             item: valueTextField,
             attribute: .Right,
             relatedBy: .Equal,
@@ -143,7 +143,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Left,
             multiplier: 1.0,
             constant: 0.0)
-        var buttonRight = NSLayoutConstraint(
+        let buttonRight = NSLayoutConstraint(
             item: enterButton,
             attribute: .Right,
             relatedBy: .Equal,
@@ -151,7 +151,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Right,
             multiplier: 1.0,
             constant: 0.0)
-        var keyValueEqualWidths = NSLayoutConstraint(
+        let keyValueEqualWidths = NSLayoutConstraint(
             item: keyTextField,
             attribute: NSLayoutAttribute.Width,
             relatedBy: .Equal,
@@ -163,7 +163,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         tableView.tableHeaderView?.addConstraints([keyTextLeft, valueTextLeft, valueTextRight, buttonRight, keyValueEqualWidths])
         
         // Vertical Layout
-        var keyTextTop = NSLayoutConstraint(
+        let keyTextTop = NSLayoutConstraint(
             item: keyTextField,
             attribute: .Top,
             relatedBy: .Equal,
@@ -171,7 +171,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Top,
             multiplier: 1.0,
             constant: 0.0)
-        var keyTextBottom = NSLayoutConstraint(
+        let keyTextBottom = NSLayoutConstraint(
             item: keyTextField, 
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -179,7 +179,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Bottom,
             multiplier: 1.0,
             constant: 0.0)
-        var valueTextTop = NSLayoutConstraint(
+        let valueTextTop = NSLayoutConstraint(
             item: valueTextField, 
             attribute: .Top,
             relatedBy: .Equal,
@@ -187,7 +187,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Top,
             multiplier: 1.0,
             constant: 0.0)
-        var valueTextBottom = NSLayoutConstraint(
+        let valueTextBottom = NSLayoutConstraint(
             item: valueTextField,
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -195,7 +195,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Bottom,
             multiplier: 1.0,
             constant: 0.0)
-        var enterButtonTop = NSLayoutConstraint(
+        let enterButtonTop = NSLayoutConstraint(
             item: enterButton,
             attribute: .Top,
             relatedBy: .Equal,
@@ -203,7 +203,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             attribute: .Top,
             multiplier: 1.0,
             constant: 0.0)
-        var enterButtonBottom = NSLayoutConstraint(
+        let enterButtonBottom = NSLayoutConstraint(
             item: enterButton,
             attribute: .Bottom,
             relatedBy: .Equal,
