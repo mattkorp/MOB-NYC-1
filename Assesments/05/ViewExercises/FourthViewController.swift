@@ -8,8 +8,12 @@
 
 import UIKit
 
-class FourthViewController: ExerciseViewController {
-
+class FourthViewController: ExerciseViewController, UIScrollViewDelegate {
+    var scrollView = UIScrollView()
+    var blueBox = UIView()
+    var redBox = UIView()
+    var purpleLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.exerciseDescription.text = "View 4"
@@ -24,8 +28,32 @@ class FourthViewController: ExerciseViewController {
         
         Your view should be in self.exerciseView, not self.view.
         */
+
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.exerciseView.frame.width, height: self.exerciseView.frame.width))
+        scrollView.scrollEnabled = true
+        scrollView.delegate = self
+        self.exerciseView.addSubview(scrollView)
+
+        purpleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.exerciseView.frame.width, height: 1000))
+        purpleLabel.backgroundColor = UIColor.purpleColor()
+        scrollView.addSubview(purpleLabel)
+        
+        blueBox = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        blueBox.backgroundColor = UIColor.blueColor()
+        scrollView.addSubview(blueBox)
+        redBox = UIView(frame: CGRect(x: 0, y: 1000, width: 20, height: 20))
+        redBox.backgroundColor = UIColor.redColor()
+        scrollView.addSubview(redBox)
+        
+
+        
+        
+        
     }
     
+    override func viewDidLayoutSubviews() {
+        
+    }
     override func shouldAutorotate() -> Bool {
         return false
     }

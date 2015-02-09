@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46BB195D1A874A8F0030A71F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BB195C1A874A8F0030A71F /* AppDelegate.swift */; };
+		46BB19641A874A8F0030A71F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46BB19631A874A8F0030A71F /* Images.xcassets */; };
+		46BB19671A874A8F0030A71F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BB19651A874A8F0030A71F /* LaunchScreen.xib */; };
+		46BB19731A874A8F0030A71F /* GeoPOS_VendorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BB19721A874A8F0030A71F /* GeoPOS_VendorTests.swift */; };
+		46BB19821A874B880030A71F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BB19811A874B880030A71F /* SwiftyJSON.swift */; };
+		46BB19831A874B880030A71F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BB19811A874B880030A71F /* SwiftyJSON.swift */; };
+		46BB19851A87A1780030A71F /* GPLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BB19841A87A1780030A71F /* GPLoginView.xib */; };
+		46BB19861A87A1780030A71F /* GPLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BB19841A87A1780030A71F /* GPLoginView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		46BB196D1A874A8F0030A71F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46BB194F1A874A8F0030A71F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46BB19561A874A8F0030A71F;
+			remoteInfo = "GeoPOS-Vendor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		46BB19571A874A8F0030A71F /* GeoPOS-Vendor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GeoPOS-Vendor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		46BB195B1A874A8F0030A71F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46BB195C1A874A8F0030A71F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		46BB19631A874A8F0030A71F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		46BB19661A874A8F0030A71F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		46BB196C1A874A8F0030A71F /* GeoPOS-VendorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GeoPOS-VendorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		46BB19711A874A8F0030A71F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46BB19721A874A8F0030A71F /* GeoPOS_VendorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPOS_VendorTests.swift; sourceTree = "<group>"; };
+		46BB197C1A874B080030A71F /* GeoPOS-Vendor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoPOS-Vendor-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		46BB197D1A874B080030A71F /* GeoPOS-VendorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoPOS-VendorTests-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		46BB19811A874B880030A71F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
+		46BB19841A87A1780030A71F /* GPLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GPLoginView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		46BB19541A874A8F0030A71F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46BB19691A874A8F0030A71F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		46BB194E1A874A8F0030A71F = {
+			isa = PBXGroup;
+			children = (
+				46BB19591A874A8F0030A71F /* GeoPOS-Vendor */,
+				46BB196F1A874A8F0030A71F /* GeoPOS-VendorTests */,
+				46BB19581A874A8F0030A71F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		46BB19581A874A8F0030A71F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46BB19571A874A8F0030A71F /* GeoPOS-Vendor.app */,
+				46BB196C1A874A8F0030A71F /* GeoPOS-VendorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46BB19591A874A8F0030A71F /* GeoPOS-Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				46BB19891A87A1920030A71F /* Models */,
+				46BB19881A87A1890030A71F /* Controllers */,
+				46BB19871A87A1810030A71F /* Views */,
+				46BB19651A874A8F0030A71F /* LaunchScreen.xib */,
+				46BB195A1A874A8F0030A71F /* Supporting Files */,
+			);
+			path = "GeoPOS-Vendor";
+			sourceTree = "<group>";
+		};
+		46BB195A1A874A8F0030A71F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46BB198A1A87A1AA0030A71F /* Images */,
+				46BB195C1A874A8F0030A71F /* AppDelegate.swift */,
+				46BB19811A874B880030A71F /* SwiftyJSON.swift */,
+				46BB197C1A874B080030A71F /* GeoPOS-Vendor-Bridging-Header.h */,
+				46BB195B1A874A8F0030A71F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46BB196F1A874A8F0030A71F /* GeoPOS-VendorTests */ = {
+			isa = PBXGroup;
+			children = (
+				46BB19721A874A8F0030A71F /* GeoPOS_VendorTests.swift */,
+				46BB19701A874A8F0030A71F /* Supporting Files */,
+			);
+			path = "GeoPOS-VendorTests";
+			sourceTree = "<group>";
+		};
+		46BB19701A874A8F0030A71F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46BB197D1A874B080030A71F /* GeoPOS-VendorTests-Bridging-Header.h */,
+				46BB19711A874A8F0030A71F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46BB19871A87A1810030A71F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				46BB19841A87A1780030A71F /* GPLoginView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		46BB19881A87A1890030A71F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		46BB19891A87A1920030A71F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		46BB198A1A87A1AA0030A71F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				46BB19631A874A8F0030A71F /* Images.xcassets */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		46BB19561A874A8F0030A71F /* GeoPOS-Vendor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46BB19761A874A8F0030A71F /* Build configuration list for PBXNativeTarget "GeoPOS-Vendor" */;
+			buildPhases = (
+				46BB19531A874A8F0030A71F /* Sources */,
+				46BB19541A874A8F0030A71F /* Frameworks */,
+				46BB19551A874A8F0030A71F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GeoPOS-Vendor";
+			productName = "GeoPOS-Vendor";
+			productReference = 46BB19571A874A8F0030A71F /* GeoPOS-Vendor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		46BB196B1A874A8F0030A71F /* GeoPOS-VendorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46BB19791A874A8F0030A71F /* Build configuration list for PBXNativeTarget "GeoPOS-VendorTests" */;
+			buildPhases = (
+				46BB19681A874A8F0030A71F /* Sources */,
+				46BB19691A874A8F0030A71F /* Frameworks */,
+				46BB196A1A874A8F0030A71F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46BB196E1A874A8F0030A71F /* PBXTargetDependency */,
+			);
+			name = "GeoPOS-VendorTests";
+			productName = "GeoPOS-VendorTests";
+			productReference = 46BB196C1A874A8F0030A71F /* GeoPOS-VendorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46BB194F1A874A8F0030A71F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Matthew Korporaal";
+				TargetAttributes = {
+					46BB19561A874A8F0030A71F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					46BB196B1A874A8F0030A71F = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 46BB19561A874A8F0030A71F;
+					};
+				};
+			};
+			buildConfigurationList = 46BB19521A874A8F0030A71F /* Build configuration list for PBXProject "GeoPOS-Vendor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 46BB194E1A874A8F0030A71F;
+			productRefGroup = 46BB19581A874A8F0030A71F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				46BB19561A874A8F0030A71F /* GeoPOS-Vendor */,
+				46BB196B1A874A8F0030A71F /* GeoPOS-VendorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		46BB19551A874A8F0030A71F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46BB19671A874A8F0030A71F /* LaunchScreen.xib in Resources */,
+				46BB19851A87A1780030A71F /* GPLoginView.xib in Resources */,
+				46BB19641A874A8F0030A71F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46BB196A1A874A8F0030A71F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46BB19861A87A1780030A71F /* GPLoginView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		46BB19531A874A8F0030A71F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46BB19821A874B880030A71F /* SwiftyJSON.swift in Sources */,
+				46BB195D1A874A8F0030A71F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46BB19681A874A8F0030A71F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46BB19731A874A8F0030A71F /* GeoPOS_VendorTests.swift in Sources */,
+				46BB19831A874B880030A71F /* SwiftyJSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		46BB196E1A874A8F0030A71F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46BB19561A874A8F0030A71F /* GeoPOS-Vendor */;
+			targetProxy = 46BB196D1A874A8F0030A71F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		46BB19651A874A8F0030A71F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				46BB19661A874A8F0030A71F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		46BB19741A874A8F0030A71F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		46BB19751A874A8F0030A71F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		46BB19771A874A8F0030A71F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "GeoPOS-Vendor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GeoPOS-Vendor-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		46BB19781A874A8F0030A71F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "GeoPOS-Vendor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GeoPOS-Vendor-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		46BB197A1A874A8F0030A71F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GeoPOS-VendorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GeoPOS-VendorTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoPOS-Vendor.app/GeoPOS-Vendor";
+			};
+			name = Debug;
+		};
+		46BB197B1A874A8F0030A71F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GeoPOS-VendorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GeoPOS-VendorTests-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeoPOS-Vendor.app/GeoPOS-Vendor";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		46BB19521A874A8F0030A71F /* Build configuration list for PBXProject "GeoPOS-Vendor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46BB19741A874A8F0030A71F /* Debug */,
+				46BB19751A874A8F0030A71F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46BB19761A874A8F0030A71F /* Build configuration list for PBXNativeTarget "GeoPOS-Vendor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46BB19771A874A8F0030A71F /* Debug */,
+				46BB19781A874A8F0030A71F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46BB19791A874A8F0030A71F /* Build configuration list for PBXNativeTarget "GeoPOS-VendorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46BB197A1A874A8F0030A71F /* Debug */,
+				46BB197B1A874A8F0030A71F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46BB194F1A874A8F0030A71F /* Project object */;
+}

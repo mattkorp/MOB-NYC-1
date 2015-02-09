@@ -9,7 +9,7 @@
 import UIKit
 
 class SecondViewController: ExerciseViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.exerciseDescription.text = "View 2"
@@ -22,7 +22,46 @@ class SecondViewController: ExerciseViewController {
         
         Your view should be in self.exerciseView, not self.view
         */
+        var boxWidth:CGFloat = 20
+        var boxHeight:CGFloat = 20
+        
+        var orientation = UIDevice.currentDevice().orientation
+        if orientation == UIDeviceOrientation.Portrait {
+            getVisibleContainerSizes(self.view.frame.width, height: self.view.frame.height)
+        } else {
+            getVisibleContainerSizes(self.view.frame.height, height: self.view.frame.width)
+        }
+
+        // FIXME: views not autoresizing properly on orientation change
+        
+        let ulBox = UIView(frame: CGRect(x: 0, y: topLayoutHeight, width: boxWidth, height: boxHeight))
+        ulBox.backgroundColor = UIColor.blueColor()
+        ulBox.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin
+        self.exerciseView.addSubview(ulBox)
+        println(ulBox)
+        let urBox = UIView(frame: CGRect(x: width-boxWidth, y: topLayoutHeight, width: boxWidth, height: boxHeight))
+        urBox.backgroundColor = UIColor.blueColor()
+        urBox.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleLeftMargin
+        self.exerciseView.addSubview(urBox)
+        println(urBox)
+
+        let llBox = UIView(frame: CGRect(x: 0, y: height-boxHeight, width: boxWidth, height: boxHeight))
+        llBox.backgroundColor = UIColor.blueColor()
+        llBox.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleRightMargin
+        self.exerciseView.addSubview(llBox)
+        println(llBox)
+
+        let lrBox = UIView(frame: CGRect(x: width-boxWidth, y: height-boxHeight, width: boxWidth, height: boxHeight))
+        lrBox.backgroundColor = UIColor.blueColor()
+        lrBox.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin
+        self.exerciseView.addSubview(lrBox)
+        println(lrBox)
+
     }
+    
+//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+//        self.viewDidLoad()
+//    }
     
     override func shouldAutorotate() -> Bool {
         return true
