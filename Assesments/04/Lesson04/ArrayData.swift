@@ -23,8 +23,11 @@ class ArrayData {
         let path = docsDirectory.stringByAppendingPathComponent("array.plist")
         let fileManager = NSFileManager.defaultManager()
         if (!fileManager.fileExistsAtPath(path)) {
-            let bundle: NSString = NSBundle.mainBundle().pathForResource("array", ofType: "plist")!
-            fileManager.copyItemAtPath(bundle, toPath: path, error: nil)
+            fileManager.createFileAtPath(path, contents: nil, attributes: nil)
+        } else {
+            if let bundle: NSString = NSBundle.mainBundle().pathForResource("array", ofType: "plist") {
+                fileManager.copyItemAtPath(bundle, toPath: path, error: nil)
+            }
         }
         let data = NSArray(array: data as NSArray)
         return data.writeToFile(path, atomically: true) ? true : false
