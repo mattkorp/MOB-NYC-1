@@ -28,19 +28,16 @@ class FirstViewController: ExerciseViewController {
         getVisibleContainerSizes(self.view.frame.width, height: self.view.frame.height)
 
         var redBox = UIView(frame: CGRect(x: 0, y: topLayoutHeight, width: width, height: boxHeight))
-        redBox.backgroundColor = UIColor.redColor()
-        redBox.layer.borderColor = UIColor.blackColor().CGColor
-        redBox.layer.borderWidth = 1
-        self.exerciseView.addSubview(redBox)
-        
         var blackBox = UIView(frame: CGRect(x:0, y:height-boxHeight, width:width, height:boxHeight))
-        blackBox.backgroundColor = UIColor.blackColor()
-        blackBox.layer.borderColor = UIColor.redColor().CGColor
-        blackBox.layer.borderWidth = 1
-        self.exerciseView.addSubview(blackBox)
+
+        for view in [redBox, blackBox] {
+            view.backgroundColor = UIColor.redColor()
+            view.layer.borderColor = UIColor.blackColor().CGColor
+            view.layer.borderWidth = 1
+            self.exerciseView.addSubview(view)
+        }
         
     }
-    
 
     override func shouldAutorotate() -> Bool {
         return false

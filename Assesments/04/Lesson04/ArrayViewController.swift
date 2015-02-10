@@ -155,7 +155,8 @@ class ArrayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Array") as? UITableViewCell ?? UITableViewCell(style: .Default, reuseIdentifier: "Array")
-        let row = indexPath.row
+        
+
         cell.textLabel?.text = tableArray[indexPath.row]
         cell.backgroundColor = backgroundColor
         cell.textLabel?.textColor = UIColor.whiteColor()

@@ -23,65 +23,34 @@ class ThirdViewController: ExerciseViewController {
         Your view should be in self.exerciseView, not self.view
         */
         
-        let boxWidth: CGFloat = 20
-        let boxHeight = boxWidth
+        var ul = UIView()
+        var ur = UIView()
+        var ll = UIView()
+        var lr = UIView()
+            
+        for view in [ul, ur, ll, lr] {
+            view.backgroundColor = UIColor.redColor()
+            view.setTranslatesAutoresizingMaskIntoConstraints(false)
+            self.exerciseView.addSubview(view)
+            
+            self.exerciseView.addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+            self.exerciseView.addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+            
+        }
         
-        var ulBox = UIView()
-        ulBox.frame.origin.x = 0
-        ulBox.frame.origin.y = 0
-        ulBox.backgroundColor = UIColor.blueColor()
+        self.view.addConstraint(NSLayoutConstraint(item: ul, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        self.exerciseView.addConstraint(NSLayoutConstraint(item: ul, attribute: .Left, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Left, multiplier: 1.0, constant: 0.0))
         
-        ulBox.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.exerciseView.addSubview(ulBox)
+        self.view.addConstraint(NSLayoutConstraint(item: ur, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        self.exerciseView.addConstraint(NSLayoutConstraint(item: ur, attribute: .Right, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Right, multiplier: 1.0, constant: 0.0))
         
-        let ulW = NSLayoutConstraint(item: ulBox, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxWidth)
-        let ulH = NSLayoutConstraint(item: ulBox, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxHeight)
-        let ulB = NSLayoutConstraint(item: ulBox, attribute: .Top, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Top, multiplier: 1.0, constant: 0.0)
-        let ulL = NSLayoutConstraint(item: ulBox, attribute: .Left, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Left, multiplier: 1.0, constant: 0.0)
-        self.exerciseView.addConstraints([ulW, ulH, ulB, ulL])
-
-        var urBox = UIView()
-        urBox.frame.origin.x = exerciseView.frame.width - boxWidth
-        urBox.frame.origin.y = 0
-        urBox.backgroundColor = UIColor.blueColor()
+        self.view.addConstraint(NSLayoutConstraint(item: ll, attribute: .Bottom, relatedBy: .Equal, toItem: self.toolbar, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        self.exerciseView.addConstraint(NSLayoutConstraint(item: ll, attribute: .Left, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Left, multiplier: 1.0, constant: 0.0))
         
-        urBox.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.exerciseView.addSubview(urBox)
+        self.view.addConstraint(NSLayoutConstraint(item: lr, attribute: .Bottom, relatedBy: .Equal, toItem: self.toolbar, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        self.exerciseView.addConstraint(NSLayoutConstraint(item: lr, attribute: .Right, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Right, multiplier: 1.0, constant: 0.0))
         
-        let urW = NSLayoutConstraint(item: urBox, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxWidth)
-        let urH = NSLayoutConstraint(item: urBox, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxHeight)
-        let urB = NSLayoutConstraint(item: urBox, attribute: .Top, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Top, multiplier: 1.0, constant: 0.0)
-        let urL = NSLayoutConstraint(item: urBox, attribute: .Right, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Right, multiplier: 1.0, constant: 0.0)
-        self.exerciseView.addConstraints([urW, urH, urB, urL])
-
-        var llBox = UIView()
-        llBox.frame.origin.x = 0
-        llBox.frame.origin.y = exerciseView.frame.height - boxHeight
-        llBox.backgroundColor = UIColor.blueColor()
         
-        llBox.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.exerciseView.addSubview(llBox)
-        
-        let llW = NSLayoutConstraint(item: llBox, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxWidth)
-        let llH = NSLayoutConstraint(item: llBox, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxHeight)
-        let llB = NSLayoutConstraint(item: llBox, attribute: .Bottom, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        let llL = NSLayoutConstraint(item: llBox, attribute: .Left, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Left, multiplier: 1.0, constant: 0.0)
-        self.exerciseView.addConstraints([llW, llH,llB, llL])
-        
-        var lrBox = UIView()
-        lrBox.frame.origin.x = exerciseView.frame.width - boxWidth
-        lrBox.frame.origin.y = exerciseView.frame.height - boxHeight
-        lrBox.backgroundColor = UIColor.blueColor()
-        lrBox.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.exerciseView.addSubview(lrBox)
-        
-        let lrW = NSLayoutConstraint(item: lrBox, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxWidth)
-        let lrH = NSLayoutConstraint(item: lrBox, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: boxHeight)
-        let lrB = NSLayoutConstraint(item: lrBox, attribute: .Bottom, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        let lrL = NSLayoutConstraint(item: lrBox, attribute: .Right, relatedBy: .Equal, toItem: self.exerciseView, attribute: .Right, multiplier: 1.0, constant: 0.0)
-        self.exerciseView.addConstraints([lrW, lrH, lrB, lrL])
-        
-
     }
     
     override func shouldAutorotate() -> Bool {
