@@ -15,19 +15,6 @@ class CalculatorView: UILabel {
     private var view = UIView()
     private var buttonView = CalculatorButtonView()
 
-    var inInputState: Bool = false
-
-//    override init() {
-//        return
-//    }
-//    override init(frame: CGRect) {
-//        self = super.init(frame: CGRect.zeroRect)
-//    }
-//
-//    required init(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     func loadDisplay(view: UIView) {
         self.view = view
         createOutputView()
@@ -43,7 +30,7 @@ class CalculatorView: UILabel {
         self.displayLabel.text = "0"
         self.displayLabel.textAlignment = NSTextAlignment.Right
         self.displayLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 50)
-        view.addSubview(self.displayLabel)
+        self.view.addSubview(self.displayLabel)
         
         self.displayLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.displayLabel.snp_makeConstraints { make in
@@ -62,16 +49,8 @@ class CalculatorView: UILabel {
     
     :param: digit <#digit description#>
     */
-    func updateDisplayOutput(digit: Character) {
-        if inInputState {
-
-            displayLabel.text?.append(digit)
-
-        } else {
-            displayLabel.text? = String(digit)
-            inInputState = true
-        }
-        
+    func updateDisplayOutput(output: String) {
+        displayLabel.text? = output
     }
     
     var displayValue: Double {

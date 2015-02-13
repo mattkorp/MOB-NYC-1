@@ -64,19 +64,17 @@ class CalculatorButtonView: UIButton {
             
             // addTarget based on key type
             switch buttonNames[index] {
-            case "AC","±","%","÷","×","−","+","√":
+            case "AC","±","%","÷","×","−","+","√","=":
                 button.addTarget(self.window?.rootViewController?.view, action: Selector("operationPressed:"), forControlEvents: .TouchUpInside)
             case "7","8","9","4","5","6","1","2","3","0",".":
                 button.addTarget(self.window?.rootViewController?.view, action: Selector("digitPressed:"), forControlEvents: .TouchUpInside)
-            case "=":
-                button.addTarget(self.window?.rootViewController?.view, action: Selector("evaluatePressed"), forControlEvents: .TouchUpInside)
             default:
                 break
             }
             
             self.view.addSubview(button)
             self.buttonArray.append(button)
-            
+        
         }
     }
     
@@ -102,8 +100,8 @@ class CalculatorButtonView: UIButton {
         
         // Make array of column indices
         var columns = (0..<numberOfColumns).map {
-            (column) in (1...numberOfRows).map {
-                (row) in numberOfColumns * (row - 1) + column
+            (column) in (0..<numberOfRows).map {
+                (row) in numberOfColumns * row + column
             }
         }
         // Make array of row indices
@@ -113,20 +111,19 @@ class CalculatorButtonView: UIButton {
             }
         }
         
-        var top: ClosedInterval = 0...3
-        var middle: ClosedInterval = 4...15
-        var bottom: ClosedInterval = 16...19
+        // Make row constraints
+        var topRow: ClosedInterval = 0...3, bottomRow: ClosedInterval = 16...19
         var rowRange: Range = 0..<numberOfColumns
         for row in rows {
             
             for index in rowRange {
                 switch row[index] {
-                case top:
+                case topRow:
                     buttonArray[row[index]].snp_makeConstraints { make in
                         make.top.equalTo(self.displayLabel.snp_bottom)
                         make.bottom.equalTo(self.buttonArray[row[index]+numberOfColumns].snp_top)
                     }
-                case bottom:
+                case bottomRow:
                     buttonArray[row[index]].snp_makeConstraints { make in
                         make.bottom.equalTo(self.view.snp_bottom)
                         return
@@ -140,16 +137,19 @@ class CalculatorButtonView: UIButton {
             }
         }
         
+        // Make column constraints
         var columnRange: Range = 0..<numberOfRows
         for column in columns {
             for index in columnRange {
                 switch column[index] {
-                case 0,4,8,12,16:
+                // first column
+                case (4*index):
                     self.buttonArray[column[index]].snp_makeConstraints { make in
                         make.left.equalTo(self.view.snp_left)
                         make.right.equalTo(self.buttonArray[column[index]+1].snp_left)
                     }
-                case 3,7,11,15,19:
+                // last column
+                case ((4*index)+3):
                     self.buttonArray[column[index]].snp_makeConstraints { make in
                         make.right.equalTo(self.view.snp_right)
                         return
