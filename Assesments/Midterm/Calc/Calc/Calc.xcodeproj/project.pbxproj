@@ -15,6 +15,7 @@
 		46B5A44C1A90620500705746 /* Snap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46B5A4481A9061E100705746 /* Snap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		46B5A4511A9068C900705746 /* Calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5A4501A9068C900705746 /* Calc.swift */; };
 		46B5A4531A90693600705746 /* Op.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5A4521A90693600705746 /* Op.swift */; };
+		46FB78051A911003003554D4 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB78041A911003003554D4 /* OrderedDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		46B5A4421A9061E100705746 /* Snap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snap.xcodeproj; path = Snap/Snap.xcodeproj; sourceTree = "<group>"; };
 		46B5A4501A9068C900705746 /* Calc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calc.swift; sourceTree = "<group>"; };
 		46B5A4521A90693600705746 /* Op.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Op.swift; sourceTree = "<group>"; };
+		46FB78041A911003003554D4 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		4668CDD51A903C57008C5361 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				46FB78041A911003003554D4 /* OrderedDictionary.swift */,
 				4668CDD71A903C57008C5361 /* AppDelegate.swift */,
 				4668CDDE1A903C57008C5361 /* Images.xcassets */,
 				4668CDE01A903C57008C5361 /* LaunchScreen.xib */,
@@ -223,6 +226,7 @@
 			files = (
 				4668CDDA1A903C57008C5361 /* CalcViewController.swift in Sources */,
 				46B5A4531A90693600705746 /* Op.swift in Sources */,
+				46FB78051A911003003554D4 /* OrderedDictionary.swift in Sources */,
 				46B5A4511A9068C900705746 /* Calc.swift in Sources */,
 				4668CDD81A903C57008C5361 /* AppDelegate.swift in Sources */,
 			);

@@ -9,11 +9,25 @@
 import Foundation
 
 class Calc {
+    
     enum UserMode {
         case Left
         case Right
         case None
     }
+    private enum CalcState {
+        case Left
+        case Right
+        case None
+    }
+    
+    private enum CalcCycle {
+        case BuildOperand(String)
+        case BuildCalculation(String, Double)
+        case UnaryCalculation(String, (Double) -> ())
+        case BinaryCalculation(String, (Double, Double) -> ())
+    }
+    
     private var userMode: UserMode
     
     // true if inputting calculation, otherwise false
@@ -22,7 +36,8 @@ class Calc {
     // for binary calculations
     private var lhsDouble: Double
     private var rhsDouble: Double
-    private var binaryOp: Op
+    private var binaryOp: Op.Type
+    
     // for calculations
     private var digitDouble: Double
     // for display
@@ -47,7 +62,6 @@ class Calc {
         self.digitDouble = Double(0)
         self.lhsDouble = Double(0)
         self.rhsDouble = Double()
-        self.binaryOp = Op()
         self.operation = Op()
     }
     
@@ -96,6 +110,7 @@ class Calc {
     }
     
     internal func evaluate(value: String) -> String? {
+//        var calcCycle = Calc.CalcCycle
 
         if let op = operation.fromRaw(value) {
             println("\(value): op: \(op), operation: \(operation) toRaw: \(op.rawValue)")
@@ -108,16 +123,16 @@ class Calc {
                 self.sqRoot()
             case .Percent:
                 self.percent()
-            case .Divide:
-                self.div()
-            case .Multiply:
-                self.mult()
-            case .Subtract:
-                self.sub()
-            case .Add:
-                self.add(operation)
-            case .Equal:
-                self.equal()
+//            case .Divide:
+//                self.div()
+//            case .Multiply:
+//                self.mult()
+//            case .Subtract:
+//                self.sub()
+//            case .Add:
+//                self.add(operation)
+//            case .Equal:
+//                self.equal()
             default:
                 return nil
             }
@@ -158,16 +173,5 @@ class Calc {
             
         }
     }
-    private func sub() {
-        
-    }
-    private func div() {
-        
-    }
-    private func mult() {
-        
-    }
-    private func equal() {
-        
-    }
+
 }

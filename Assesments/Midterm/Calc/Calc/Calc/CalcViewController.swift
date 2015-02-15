@@ -10,13 +10,16 @@ import UIKit
 
 class CalcViewController: UIViewController {
     
+    // Views for Display/Output
     private let displayContainerView: UIView!
     private let displayContents: UIView!
     private let displayLabel: UILabel!
 
+    // Views for Keys/Buttons
     private let buttonsContainerView: UIView!
     private var buttonArray: [UIButton] = []
     
+    // Calculator model
     private let calc: Calc!
     
     override init() {
@@ -65,17 +68,12 @@ class CalcViewController: UIViewController {
         self.view.addSubview(buttonsContainerView)
         
         // Make Buttons
-        let buttonNames = [
-            "AC","±","%","÷",
-            "7","8","9","×",
-            "4","5","6","−",
-            "1","2","3","+",
-            "0",".","√","=" ]
+        let calculatorKeys = Op().getCalcKeys()
         
         var colorCount = 1
-        for (index, name) in enumerate(buttonNames) {
+        for (index, buttonName) in enumerate(calculatorKeys.keys) {
             var button = UIButton()
-            button.setTitle("\(buttonNames[index])", forState: UIControlState.Normal)
+            button.setTitle("\(buttonName)", forState: UIControlState.Normal)
             button.layer.borderWidth = 0.5
             button.layer.borderColor = UIColor(red:0.56, green:0.56, blue:0.56, alpha:1).CGColor
             button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 40)
@@ -102,7 +100,7 @@ class CalcViewController: UIViewController {
             button.addTarget(self, action: "unLowlight:", forControlEvents: UIControlEvents.TouchUpInside)
             
             // addTarget based on key type
-            switch buttonNames[index] {
+            switch buttonName {
             case "AC","±","%","÷","×","−","+","√","=":
                 button.addTarget(self, action: Selector("operationPressed:"), forControlEvents: .TouchUpInside)
             case "7","8","9","4","5","6","1","2","3","0",".":
@@ -113,39 +111,26 @@ class CalcViewController: UIViewController {
             
             self.buttonArray.append(button)
             self.buttonsContainerView.addSubview(button)
-            
         }
         
         
         let containerHeight = CGRectGetHeight(self.view.frame)
-        let displayHeight = containerHeight * (9/13)
-        let buttonsHeight = containerHeight * (4/13)
-                displayContainerView.snp_makeConstraints { make in
-//                    make.height.equalTo(self.view.snp_height).offset(-buttonsHeight)
+                self.displayContainerView.snp_makeConstraints { make in
+                    make.height.equalTo(self.view.snp_height).multipliedBy(0.22)
                     make.width.equalTo(self.view.snp_width)
                     make.top.equalTo(self.view.snp_top)
                     make.bottom.equalTo(self.buttonsContainerView.snp_top)
                     make.left.equalTo(self.view.snp_left)
                     make.right.equalTo(self.view.snp_right)
                 }
-        
-        self.view.addConstraints([
-            NSLayoutConstraint(item: displayContainerView, attribute: .Height, relatedBy: .Equal, toItem: self.view, attribute: .Height, multiplier: 0.2, constant: 0.0),
-            ])
-
-        
                 self.buttonsContainerView.snp_makeConstraints { make in
-//                    make.height.equalTo(self.view.snp_height).offset(-displayHeight)
+                    make.height.equalTo(self.view.snp_height).multipliedBy(0.78)
                     make.width.equalTo(self.view.snp_width)
                     make.bottom.equalTo(self.view.snp_bottom)
                     make.left.equalTo(self.view.snp_left)
                     make.right.equalTo(self.view.snp_right)
                 }
-        self.view.addConstraints([
-            NSLayoutConstraint(item: self.buttonsContainerView, attribute: .Height, relatedBy: .Equal, toItem: self.view, attribute: .Height, multiplier: 0.8, constant: 0.0),
-            ])
-        
-        
+
         // Button Constraints
         for (index, button) in enumerate(self.buttonArray) {
             self.buttonArray[index].snp_makeConstraints { make in

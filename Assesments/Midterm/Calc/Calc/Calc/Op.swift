@@ -10,6 +10,7 @@ import Foundation
 
 protocol RawOperations {
     typealias Operation: RawRepresentable
+    typealias CalcKeyCategory: RawRepresentable
     func fromRaw(raw: String) -> Operation?
     func toRaw() -> String?
 }
@@ -28,23 +29,32 @@ struct Op: RawOperations {
         case Equal = "="
     }
     
-//    enum Ops: String {
-//        case AllClear = "AC"
-//        case Parity = "±"
-//        case Sqrt(String, Double -> Double)
-//        case Percent(String, Double -> Double)
-//        case Divide(String, (Double, Double) -> Double)
-//        case Multiply(String, (Double, Double) -> Double)
-//        case Subtract(String, (Double, Double) -> Double)
-//        case Add(String, (Double, Double) -> Double)
-//        case Equal(String, (Double, Double) -> Double)
-//    }
+    private enum CalcKeyCategory: String {
+        case Digit = "digit"
+        case Operand = "operand"
+    }
     
-    func fromRaw(raw: String) -> Operation? {
+    var calcKeys = OrderedDictionary<String, String>(
+        keys: ["AC","±","%","÷",
+            "7","8","9","×",
+            "4","5","6","−",
+            "1","2","3","+",
+            "0",".","√","=" ],
+        values: ["digit","operand","operand","operand",
+            "digit","digit","digit","operand",
+            "digit","digit","digit","operand",
+            "digit","digit","digit","operand",
+            "digit","digit","operand","operand"])
+    
+    internal func getCalcKeys() -> OrderedDictionary<String, String> {
+        return self.calcKeys
+    }
+    
+    internal func fromRaw(raw: String) -> Operation? {
         return Operation(rawValue: raw)
     }
     
-    func toRaw() -> String? {
+    internal func toRaw() -> String? {
         return ""
     }
 }
