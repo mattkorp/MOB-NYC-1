@@ -1,12 +1,13 @@
 //
 //  AppDelegate.swift
-//  Calculator
+//  Calc
 //
-//  Created by Matthew Korporaal on 2/10/15.
+//  Created by Matthew Korporaal on 2/14/15.
 //  Copyright (c) 2015 Matthew Korporaal. All rights reserved.
 //
 
 import UIKit
+import Snap
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         var bounds = UIScreen.mainScreen().bounds
         self.window = UIWindow(frame: bounds)
-        var calculatorViewController = CalculatorViewController()
-        calculatorViewController.view.backgroundColor = UIColor.whiteColor()
-        self.window?.rootViewController = calculatorViewController
+        var calcViewController = CalcViewController()
+        calcViewController.view.backgroundColor = UIColor.purpleColor()
+        self.window?.rootViewController = calcViewController
         self.window!.makeKeyAndVisible()
         
         return true

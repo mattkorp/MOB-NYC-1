@@ -4,3 +4,6 @@
 [submodule "Assesments/Midterm/Calculator/Dollar.swift"]
 	path = Assesments/Midterm/Calculator/Dollar.swift
 	url = https://github.com/ankurp/Dollar.swift.git
+[submodule "Assesments/Midterm/Calc/Calc/Snap"]
+	path = Assesments/Midterm/Calc/Calc/Snap
+	url = https://github.com/Masonry/Snap.git
