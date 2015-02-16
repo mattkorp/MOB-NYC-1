@@ -10,168 +10,173 @@ import Foundation
 
 class Calc {
     
-    enum UserMode {
-        case Left
-        case Right
-        case None
-    }
-    private enum CalcState {
-        case Left
-        case Right
-        case None
-    }
-    
-    private enum CalcCycle {
-        case BuildOperand(String)
-        case BuildCalculation(String, Double)
-        case UnaryCalculation(String, (Double) -> ())
-        case BinaryCalculation(String, (Double, Double) -> ())
-    }
-    
-    private var userMode: UserMode
-    
-    // true if inputting calculation, otherwise false
-    private var toggleUserMode: Bool
-    
-    // for binary calculations
-    private var lhsDouble: Double
-    private var rhsDouble: Double
-    private var binaryOp: Op.Type
-    
+    private var isUserInputting: Bool = false
+    private let op = Op()
+    private let calcKeys: OrderedDictionary<String, String> = Op().getCalcKeys()
+    // Store the operations and operands
+    private var opStack: [String] = []
     // for calculations
-    private var digitDouble: Double
+    private var outputDouble: Double
     // for display
-    private var digitString: String
+    private var outputString: String
     {
         didSet {
-            // sync double counterpart
-            self.digitDouble = (self.digitString as NSString).doubleValue
+            // sync double counterpart and update stack
+            outputDouble = (outputString as NSString).doubleValue
+            opStack[opStack.count] = self.outputString
             // broadcast updates
             NSNotificationCenter.defaultCenter().postNotificationName("DigitUpdated", object: self)
         }
     }
     
-    private let operation: Op!
-    
     init() {
-        
-        self.userMode = UserMode.None
-        self.toggleUserMode = false
-        
-        self.digitString = String("0")
-        self.digitDouble = Double(0)
-        self.lhsDouble = Double(0)
-        self.rhsDouble = Double()
-        self.operation = Op()
+//        calcKeys = Op().getCalcKeys()
+        self.resetOutput()
     }
     
-
-    /*
-    :method: storeDigit Checks if input is valid.  If valid, digit is converted and saved
+    internal func getOutputString() -> String {
+        return self.outputString
+    }
+    private func storeDigit(digit: String) {
+        self.outputString += digit
+    }
+    private func storeDigit(digit: Double, precision: Double) {
+        self.outputString = String(format: "%\(precision)f", digit)
+    }
+    private func resetOutput() {
+        self.outputString = "0"
+    }
     
-    :param: digit String value of input
-    
-    :returns: Optional true or false if invalid digit
-    */
-    internal func validateDigit(digit: String) -> Bool? {
-//        if self.userMode == UserMode.None {
-//            self.digitString = "0"
-//        }
-        if self.toggleUserMode == false {
-            self.digitString = "0"
+    internal func evaluate(value: String) {
+        let keyCategory: String = self.calcKeys[value]!
+        switch keyCategory {
+        case "digit":
+            if isUserInputting == false {
+                isUserInputting = true
+                self.opStack.removeAll(keepCapacity: false)
+            }
+            self.validateDigit(value)
+        case "unary":
+            if self.isUserInputting {
+                self.evaluateUnary(value)
+            }
+        case "binary":
+            // One operand, add operator
+            if opStack.count == 1 {
+                opStack.append(value)
+            // Replace operator
+            } else if opStack.count == 2 {
+                opStack[opStack.count] = value
+                self.evaluateBinary(value)
+            } else if opStack.count == 3 {
+                self.evaluateBinary(value)
+            }
+        case "clear":
+            self.isUserInputting = false
+            self.opStack.removeAll(keepCapacity: false)
+            self.resetOutput()
+        default:
+            return
         }
-        if digit == "." && (self.digitString.rangeOfString(".") != nil) {
+    }
+
+    // MARK: Operational Methods
+    /*
+    Validates digit key pressed and updates properties
+    :param: digit key title
+    :returns: Optional bool, true if valid
+    */
+    private func validateDigit(digit: String) -> Bool? {
+        if digit == "." && (self.outputString.rangeOfString(".") != nil) {
             // Don't add extra ...
             return false
-        } else if digit == "0" && self.digitString == "0" {
+        } else if digit == "0" && self.outputString == "0" {
             // Don't prepend 0000
             return false
-        } else if digit != "." && self.digitString == "0" {
+        } else if digit != "." && self.outputString == "0" {
             // Drop 0 if first digit
-            self.digitString = ""
+            self.outputString = ""
         }
-//        self.userMode = UserMode.Left
-        self.toggleUserMode = true
         self.storeDigit(digit)
         return true
     }
-    internal func getDigitString() -> String {
-        return self.digitString
-    }
-    private func storeDigit(digit: String) {
-        self.digitString += digit
-    }
-    // TODO: may wnt to add precision argument..
-    private func storeDigit(digit: Double, precision: Double) {
-        self.digitString = String(format: "%\(precision)f", digit)
-    }
-    private func resetDigit() {
-        self.digitString = "0"
-    }
-    
-    internal func evaluate(value: String) -> String? {
-//        var calcCycle = Calc.CalcCycle
 
-        if let op = operation.fromRaw(value) {
-            println("\(value): op: \(op), operation: \(operation) toRaw: \(op.rawValue)")
-            switch op {
-            case .AllClear:
-                self.resetDigit()
+    private func evaluateUnary(op: String) {
+        if let unary = self.op.fromRaw(op) {
+            switch unary {
             case .Parity:
                 self.toggleParity()
             case .Sqrt:
                 self.sqRoot()
             case .Percent:
                 self.percent()
-//            case .Divide:
-//                self.div()
-//            case .Multiply:
-//                self.mult()
-//            case .Subtract:
-//                self.sub()
-//            case .Add:
-//                self.add(operation)
-//            case .Equal:
-//                self.equal()
             default:
-                return nil
+                return
             }
+        } else {
+            println("Cannot handle this operation")
         }
-        return nil
+    }
+    private func evaluateBinary(op: String) {
+        if let binary = self.op.fromRaw(op) {
+            switch binary {
+            case .Divide:
+                self.div()
+            case .Multiply:
+                self.mult()
+            case .Subtract:
+                self.sub()
+            case .Add:
+                self.add()
+            case .Equal:
+                self.equal()
+            default:
+                return
+            }
+            self.operation = op
+            self.storeDigit(self.outputDouble, precision: 0.6)
+        } else {
+            println("Cannot handle this operation")
+        }
     }
     
+    // MARK: Unary Methods
     private func toggleParity() {
-        if self.digitDouble > 0 {
-            self.digitString = "-" + self.digitString
+        if self.outputDouble > 0 {
+            self.outputString = "-" + self.outputString
         } else {
-            self.digitString = self.digitString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            self.outputString = self.outputString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         }
     }
     private func sqRoot() {
-        self.digitDouble = sqrt(self.digitDouble)
-        self.storeDigit(self.digitDouble, precision: 0.6)
-        self.toggleUserMode = false
+        self.outputDouble = sqrt(self.outputDouble)
+        self.storeDigit(self.outputDouble, precision: 0.6)
     }
-    
     private func percent() {
-        self.digitDouble /= 100
-        self.storeDigit(self.digitDouble, precision: 0.2)
-        self.toggleUserMode = false
+        self.outputDouble! /= 100.0
+        self.storeDigit(self.outputDouble, precision: 0.2)
     }
     
-    private func add(currentOp: Op) {
-        if self.userMode == UserMode.Left {
-            self.lhsDouble = self.digitDouble
-            self.binaryOp = currentOp
-            self.userMode = UserMode.Right
-        } else if self.userMode == UserMode.Right {
-            
-        } else {
-            
-        }
-        if self.digitDouble != 0 && self.toggleUserMode == true {
-            
-        }
+    // MARK: Binary Methods
+    private func add() {
+        self.outputDouble = self.lhsDouble + self.outputDouble
     }
+    private func div() {
+        if (self.lhsDouble == 0.0) {
+            self.resetOutput()
+        } else {
+            self.outputDouble = self.outputDouble! / self.lhsDouble
+        }
 
+    }
+    private func mult() {
+        self.outputDouble = self.lhsDouble * self.outputDouble
+    }
+    private func sub() {
+        self.outputDouble = self.outputDouble - self.lhsDouble
+    }
+    private func equal() {
+        self.outputDouble = self.lhsDouble + self.outputDouble
+    }
+    
 }

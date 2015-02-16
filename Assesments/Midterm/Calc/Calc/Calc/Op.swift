@@ -10,7 +10,6 @@ import Foundation
 
 protocol RawOperations {
     typealias Operation: RawRepresentable
-    typealias CalcKeyCategory: RawRepresentable
     func fromRaw(raw: String) -> Operation?
     func toRaw() -> String?
 }
@@ -29,22 +28,17 @@ struct Op: RawOperations {
         case Equal = "="
     }
     
-    private enum CalcKeyCategory: String {
-        case Digit = "digit"
-        case Operand = "operand"
-    }
-    
-    var calcKeys = OrderedDictionary<String, String>(
+    private var calcKeys = OrderedDictionary<String, String>(
         keys: ["AC","±","%","÷",
             "7","8","9","×",
             "4","5","6","−",
             "1","2","3","+",
             "0",".","√","=" ],
-        values: ["digit","operand","operand","operand",
-            "digit","digit","digit","operand",
-            "digit","digit","digit","operand",
-            "digit","digit","digit","operand",
-            "digit","digit","operand","operand"])
+        values: ["clear","unary","unary","binary",
+            "digit","digit","digit","binary",
+            "digit","digit","digit","binary",
+            "digit","digit","digit","binary",
+            "digit","digit","unary","equal"])
     
     internal func getCalcKeys() -> OrderedDictionary<String, String> {
         return self.calcKeys
@@ -54,7 +48,8 @@ struct Op: RawOperations {
         return Operation(rawValue: raw)
     }
     
+    // Dummy function needed for RawOperations
     internal func toRaw() -> String? {
-        return ""
+        return nil
     }
 }

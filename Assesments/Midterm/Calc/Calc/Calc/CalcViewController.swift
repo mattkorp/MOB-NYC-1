@@ -24,12 +24,12 @@ class CalcViewController: UIViewController {
     
     override init() {
         super.init()
-        displayContainerView = UIView()
-        displayContents =  UIView()
-        displayLabel = UILabel()
-        buttonsContainerView = UIView()
+        self.displayContainerView = UIView()
+        self.displayContents =  UIView()
+        self.displayLabel = UILabel()
+        self.buttonsContainerView = UIView()
         
-        calc = Calc()
+        self.calc = Calc()
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -46,12 +46,12 @@ class CalcViewController: UIViewController {
         super.viewDidLoad()
         
         // Display Container
-        displayContainerView.backgroundColor = UIColor(red:0.17, green:0.15, blue:0.11, alpha:1)
-        displayContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.view.addSubview(displayContainerView)
+        self.displayContainerView.backgroundColor = UIColor(red:0.17, green:0.15, blue:0.11, alpha:1)
+        self.displayContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.view.addSubview(self.displayContainerView)
 
         // Calculator display
-        self.displayLabel.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width-30, CGRectGetHeight(self.view.frame))
+        self.displayLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame))
         self.displayLabel.backgroundColor = UIColor(red:0.17, green:0.15, blue:0.11, alpha:1)
         self.displayLabel.textColor = UIColor.whiteColor()
         self.displayLabel.text = "0"
@@ -82,32 +82,33 @@ class CalcViewController: UIViewController {
             // Background colors
             if index == (4 * (colorCount - 1) + 3) {
                 button.backgroundColor = UIColor(red:0.96, green:0.57, blue:0.22, alpha:1)
-                button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-                button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Highlighted)
+                button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                button.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
                 //                button.addTarget(self, action: "borderHighlighted:", forControlEvents: UIControlEvents.TouchDown)
                 //                button.addTarget(self, action: "bordernHighlighted:", forControlEvents: UIControlEvents.TouchUpInside)
                 colorCount++
             } else if 0...2 ~= index {
                 button.backgroundColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1)
-                button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                button.setTitleColor(UIColor.blackColor(), forState: .Normal)
                 
             } else {
                 button.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1)
-                button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                button.setTitleColor(UIColor.blackColor(), forState: .Normal)
             }
             // Animated background colors
-            button.addTarget(self, action: "lowlight:", forControlEvents: UIControlEvents.TouchDown)
-            button.addTarget(self, action: "unLowlight:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: "lowlight:", forControlEvents: .TouchDown)
+            button.addTarget(self, action: "unLowlight:", forControlEvents: .TouchUpInside)
             
             // addTarget based on key type
-            switch buttonName {
-            case "AC","±","%","÷","×","−","+","√","=":
-                button.addTarget(self, action: Selector("operationPressed:"), forControlEvents: .TouchUpInside)
-            case "7","8","9","4","5","6","1","2","3","0",".":
-                button.addTarget(self, action: Selector("digitPressed:"), forControlEvents: .TouchUpInside)
-            default:
-                break
-            }
+            button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
+//            switch buttonName {
+//            case "AC","±","%","÷","×","−","+","√","=":
+//                button.addTarget(self, action: Selector("operationPressed:"), forControlEvents: .TouchUpInside)
+//            case "7","8","9","4","5","6","1","2","3","0",".":
+//                button.addTarget(self, action: Selector("digitPressed:"), forControlEvents: .TouchUpInside)
+//            default:
+//                break
+//            }
             
             self.buttonArray.append(button)
             self.buttonsContainerView.addSubview(button)
@@ -212,22 +213,16 @@ class CalcViewController: UIViewController {
         // Update Display when calculator makes a change
         NSNotificationCenter.defaultCenter().addObserverForName("DigitUpdated", object: nil, queue: nil) { (notification: NSNotification!) -> Void in
             if let calc = notification.object! as? Calc {
-                self.updateDisplay(calc.getDigitString())
+                self.updateDisplay(calc.getOutputString())
             }
         }
     }
     
     /**
     Target set in CalculatorView. Appends digit to operand, if valid
-    
     :param: sender the button pressed
     */
-    internal func digitPressed(sender: UIButton) {
-        let newDigit = sender.currentTitle!
-        self.calc.validateDigit(newDigit)
-    }
-    
-    internal func operationPressed(sender: UIButton) {
+    internal func buttonPressed(sender: UIButton) {
         let newOp = sender.currentTitle!
         self.calc.evaluate(newOp)
     }
@@ -238,7 +233,6 @@ class CalcViewController: UIViewController {
 
     /**
     Lowlights button by making rgb value darker
-    
     :param: sender button that was pressed
     */
     func lowlight(sender: UIButton) {
@@ -251,7 +245,6 @@ class CalcViewController: UIViewController {
     
     /**
     Removes lowlight by adding the constant that darkened it
-    
     :param: sender UIButton
     */
     func unLowlight(sender: UIButton) {
