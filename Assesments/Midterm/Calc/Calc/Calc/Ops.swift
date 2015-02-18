@@ -14,7 +14,7 @@ protocol RawOperations {
     func toRaw() -> String?
 }
 
-struct Op: RawOperations {
+struct Ops: RawOperations {
     
     enum Operation: String {
         case AllClear = "AC"
