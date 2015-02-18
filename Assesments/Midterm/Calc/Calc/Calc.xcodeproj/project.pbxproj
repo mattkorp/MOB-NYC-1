@@ -13,7 +13,6 @@
 		4668CDE21A903C57008C5361 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668CDE01A903C57008C5361 /* LaunchScreen.xib */; };
 		46B5A44B1A90620500705746 /* Snap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46B5A4481A9061E100705746 /* Snap.framework */; };
 		46B5A44C1A90620500705746 /* Snap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46B5A4481A9061E100705746 /* Snap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46B5A4511A9068C900705746 /* Calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5A4501A9068C900705746 /* Calc.swift */; };
 		46B5A4531A90693600705746 /* Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5A4521A90693600705746 /* Ops.swift */; };
 		46E101541A93BB97004C9E10 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E101531A93BB97004C9E10 /* Calculator.swift */; };
 		46FB78051A911003003554D4 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB78041A911003003554D4 /* OrderedDictionary.swift */; };
@@ -65,7 +64,6 @@
 		4668CDDE1A903C57008C5361 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4668CDE11A903C57008C5361 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		46B5A4421A9061E100705746 /* Snap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snap.xcodeproj; path = Snap/Snap.xcodeproj; sourceTree = "<group>"; };
-		46B5A4501A9068C900705746 /* Calc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calc.swift; sourceTree = "<group>"; };
 		46B5A4521A90693600705746 /* Ops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ops.swift; sourceTree = "<group>"; };
 		46E101531A93BB97004C9E10 /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		46FB78041A911003003554D4 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		4668CDD41A903C57008C5361 /* Calc */ = {
 			isa = PBXGroup;
 			children = (
-				46B5A4501A9068C900705746 /* Calc.swift */,
 				46B5A4521A90693600705746 /* Ops.swift */,
 				4668CDD91A903C57008C5361 /* CalcViewController.swift */,
 				46E101531A93BB97004C9E10 /* Calculator.swift */,
@@ -230,7 +227,6 @@
 				4668CDDA1A903C57008C5361 /* CalcViewController.swift in Sources */,
 				46B5A4531A90693600705746 /* Ops.swift in Sources */,
 				46FB78051A911003003554D4 /* OrderedDictionary.swift in Sources */,
-				46B5A4511A9068C900705746 /* Calc.swift in Sources */,
 				4668CDD81A903C57008C5361 /* AppDelegate.swift in Sources */,
 				46E101541A93BB97004C9E10 /* Calculator.swift in Sources */,
 			);

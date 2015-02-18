@@ -24,27 +24,35 @@ class CalcViewController: UIViewController {
     private let calculatorKeys = Ops().getCalcKeys()
     private var isUserInputtingNumber = false
     
-//    override init() {
-//        super.init()
-//    }
-//
-//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    required init(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.loadUI()
+    }
+    
+    /**
+    Calls methods to make display and buttons.
+    Called from viewDidLoad
+    */
+    private func loadUI() {
+        self.makeContainersForCalculatorComponents()
+        self.makeCalculatorDisplay()
+        self.makeCalculatorButtons()
+    }
+    
+    /**
+    Initialize containers for display and buttons
+    */
+    private func makeContainersForCalculatorComponents() {
         // Display Container
         self.displayContainerView.backgroundColor = UIColor(red:0.17, green:0.15, blue:0.11, alpha:1)
         self.displayContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.view.addSubview(self.displayContainerView)
-
+        
         // Display Container constraints
         self.displayContainerView.snp_makeConstraints { make in
             make.height.equalTo(self.view.snp_height).multipliedBy(0.22)
@@ -68,18 +76,15 @@ class CalcViewController: UIViewController {
             make.left.equalTo(self.view.snp_left)
             make.right.equalTo(self.view.snp_right)
         }
-         loadUI()
     }
     
-    private func loadUI() {
-        makeCalculatorDisplay()
-        makeCalculatorButtons()
-    }
-    
+    /**
+    Make display for output and add to container
+    */
     private func makeCalculatorDisplay() {
 
         // Calculator display
-        self.displayLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame))
+        self.displayLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds)-20, CGRectGetHeight(self.view.bounds))
         self.displayLabel.backgroundColor = UIColor(red:0.17, green:0.15, blue:0.11, alpha:1)
         self.displayLabel.textColor = UIColor.whiteColor()
         self.displayLabel.text = "0"
@@ -93,11 +98,18 @@ class CalcViewController: UIViewController {
         // Update Display when calculator model makes a change
         NSNotificationCenter.defaultCenter().addObserverForName("DigitUpdated", object: nil, queue: nil) { (notification: NSNotification!) -> Void in
             if let calc = notification.object! as? Calculator {
-                self.displayValue = calc.result
+                if calc.result == 0.0 {
+                    self.updateDisplay("0")
+                } else {
+                    self.displayValue = calc.result
+                }
             }
         }
     }
     
+    /**
+    Create buttons and add to container
+    */
     private func makeCalculatorButtons() {
 
         // Make Buttons
@@ -116,15 +128,17 @@ class CalcViewController: UIViewController {
                 button.backgroundColor = UIColor(red:0.96, green:0.57, blue:0.22, alpha:1)
                 button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 button.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
-                //                button.addTarget(self, action: "borderHighlighted:", forControlEvents: UIControlEvents.TouchDown)
-                //                button.addTarget(self, action: "bordernHighlighted:", forControlEvents: UIControlEvents.TouchUpInside)
+//                button.addTarget(self, action: "thickBorder:", forControlEvents: UIControlEvents.TouchDown)
+//                button.addTarget(self, action: "thinBorder:", forControlEvents: UIControlEvents.TouchUpOutside)
                 colorCount++
             // Top row
             } else if 0...2 ~= index {
-                button.backgroundColor = UIColor(red:0.84, green:0.84, blue:0.84, alpha:1)
+                button.backgroundColor = UIColor(red:0.80, green:0.80, blue:0.80, alpha:1)
                 button.setTitleColor(UIColor.blackColor(), forState: .Normal)
             // The rest
             } else {
+//                var tap = UITapGestureRecognizer(target: self, action: "thinBorders")
+//                button.addGestureRecognizer(tap)
                 button.backgroundColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1)
                 button.setTitleColor(UIColor.blackColor(), forState: .Normal)
             }
@@ -139,14 +153,14 @@ class CalcViewController: UIViewController {
             self.buttonArray.append(button)
             self.buttonsContainerView.addSubview(button)
         }
-
         constraintsForCalculatorButtons()
     }
     
+    /**
+    Button Constraints
+    */
     private func constraintsForCalculatorButtons() {
-
-        
-        // Button Constraints
+        // equal height & widths
         for (index, button) in enumerate(self.buttonArray) {
             self.buttonArray[index].snp_makeConstraints { make in
                 // Set button equal widths and heights
@@ -234,6 +248,9 @@ class CalcViewController: UIViewController {
         let key = calculatorKeys[keyName]
     
         if key == "digit" {
+            if keyName == "." && displayLabel.text!.rangeOfString(".") != nil {
+                return
+            }
             if isUserInputtingNumber {
                 self.updateDisplay(displayLabel.text! + keyName)
             } else {
@@ -247,10 +264,15 @@ class CalcViewController: UIViewController {
         }
     }
     
-    private func updateDisplay(output: String) {
-        self.displayLabel.text = output
+    /**
+    Add key names to Display while user is inputting
+    :param: displayText String to display
+    */
+    private func updateDisplay(displayText: String) {
+        self.displayLabel.text = displayText
     }
 
+    // Add result to display as a string or gets a Double
     var displayValue: Double {
         get {
             return (self.displayLabel.text! as NSString).doubleValue
@@ -260,6 +282,23 @@ class CalcViewController: UIViewController {
             self.isUserInputtingNumber = false
         }
     }
+// TODO: Once goes thick, it doesn't want to go back. feeble attempts
+//    var thickButton: UIButton?
+//    func thickBorder(sender: UIButton) {
+//        sender.layer.borderWidth = 2
+//        thickButton = sender
+//    }
+//    func thinBorder(sender: UIButton) {
+//        sender.layer.borderWidth = 0.5
+////        self.view.setNeedsLayout()
+////        self.view.layoutIfNeeded()
+//
+//    }
+//    func thinBorders() {
+//        if let button = thickButton {
+//            button.layer.borderWidth = 0.5
+//        }
+//    }
     
     /**
     Lowlights button by making rgb value darker

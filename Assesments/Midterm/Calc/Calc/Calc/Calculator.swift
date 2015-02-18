@@ -67,11 +67,9 @@ class Calculator {
                 self.clearAll()
                 return (operation(operand), remainingOps, remainingVars)
                 
-                
             case .BinaryOperation(_, let seed, let operation):
                 var operand1: Double, operand2: Double
                 operand2 = remainingVars.removeLast()
-                println("else op2: \(operand2)")
                 let eval = evaluate(remainingOps, rands: remainingVars)
                 if eval.result != nil {
                     operand1 = eval.result!
@@ -96,6 +94,11 @@ class Calculator {
             self.clearAll()
         }
         else if key == "binary" && operandStack.count == 1{
+            if key != "equal" {
+                if let operation = operations[symbol] {
+                        operationStack.append(operation)
+                }
+            }
             return
         } else if key != "equal" {
             if let operation = operations[symbol] {

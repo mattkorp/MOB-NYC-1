@@ -9,10 +9,26 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="uhT-l2-oLm">
+                    <rect key="frame" x="-5" y="-128" width="491" height="736"/>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uhT-l2-oLm" secondAttribute="trailing" constant="-6" id="4gi-xJ-ehr"/>
+                <constraint firstAttribute="bottom" secondItem="uhT-l2-oLm" secondAttribute="bottom" constant="-128" id="CRp-BW-fvp"/>
+                <constraint firstItem="uhT-l2-oLm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-5" id="bK2-mE-aZN"/>
+                <constraint firstAttribute="centerY" secondItem="uhT-l2-oLm" secondAttribute="centerY" id="p8w-ce-j6u"/>
+                <constraint firstItem="uhT-l2-oLm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-128" id="snu-1Y-ZsM"/>
+                <constraint firstAttribute="centerX" secondItem="uhT-l2-oLm" secondAttribute="centerX" id="wkk-XT-NKB"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="Splash" width="491" height="736"/>
+    </resources>
 </document>
