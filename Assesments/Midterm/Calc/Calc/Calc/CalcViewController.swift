@@ -254,10 +254,15 @@ class CalcViewController: UIViewController {
             if isUserInputtingNumber {
                 self.updateDisplay(displayLabel.text! + keyName)
             } else {
+                self.buttonArray[0].setTitle("C", forState: .Normal)
                 isUserInputtingNumber = true
                 self.updateDisplay(keyName)
             }
         } else if key != "digit" {
+            if keyName == "C" as String {
+                self.updateDisplay("0")
+                self.buttonArray[0].setTitle("AC", forState: .Normal)
+            }
             isUserInputtingNumber = false
             self.calc.pushOperand(displayValue)
             self.calc.pushOperation(keyName)
