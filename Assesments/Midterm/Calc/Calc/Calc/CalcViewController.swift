@@ -163,6 +163,7 @@ class CalcViewController: UIViewController {
         // equal height & widths
         for (index, button) in enumerate(self.buttonArray) {
             self.buttonArray[index].snp_makeConstraints { make in
+//                make.height.equalTo(self.buttonArray[index].snp_width)
                 // Set button equal widths and heights
                 if index != (self.buttonArray.count - 1) {
                     make.height.equalTo(self.buttonArray[index+1].snp_height)

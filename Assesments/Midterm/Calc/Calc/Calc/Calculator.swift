@@ -74,6 +74,7 @@ class Calculator {
                 if eval.result != nil {
                     operand1 = eval.result!
                 } else {
+//                    operand1 = operand2
                     operand1 = seed
                 }
                 println("op1:\(operand1) op2:\(operand2) Vars:\(remainingVars) Ops:\(remainingOps) ")

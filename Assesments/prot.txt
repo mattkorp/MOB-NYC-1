@@ -1,0 +1,72 @@
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin/LoginViewController.swift:protocol LoginViewControllerDelegate {
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLink.h:/*! The version of the App Link protocol that this library supports */
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLink.h: Generally, this will only be used by implementers of the BFAppLinkResolving protocol,
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLinkNavigation.h:@protocol BFAppLinkResolving;
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLinkResolving.h: Implement this protocol to provide an alternate strategy for resolving
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLinkResolving.h:@protocol BFAppLinkResolving <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLinkReturnToRefererController.h:@protocol BFAppLinkReturnToRefererControllerDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Headers/BFAppLinkReturnToRefererView.h:@protocol BFAppLinkReturnToRefererViewDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLink.h:/*! The version of the App Link protocol that this library supports */
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLink.h: Generally, this will only be used by implementers of the BFAppLinkResolving protocol,
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLinkNavigation.h:@protocol BFAppLinkResolving;
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLinkResolving.h: Implement this protocol to provide an alternate strategy for resolving
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLinkResolving.h:@protocol BFAppLinkResolving <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLinkReturnToRefererController.h:@protocol BFAppLinkReturnToRefererControllerDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/A/Headers/BFAppLinkReturnToRefererView.h:@protocol BFAppLinkReturnToRefererViewDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLink.h:/*! The version of the App Link protocol that this library supports */
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLink.h: Generally, this will only be used by implementers of the BFAppLinkResolving protocol,
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLinkNavigation.h:@protocol BFAppLinkResolving;
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLinkResolving.h: Implement this protocol to provide an alternate strategy for resolving
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLinkResolving.h:@protocol BFAppLinkResolving <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLinkReturnToRefererController.h:@protocol BFAppLinkReturnToRefererControllerDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Bolts.framework/Versions/Current/Headers/BFAppLinkReturnToRefererView.h:@protocol BFAppLinkReturnToRefererViewDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Parse.framework/Headers/PFObject+Subclass.h: Strongly-typed subclasses of `PFObject` must conform to the <PFSubclassing> protocol
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Parse.framework/Headers/PFObject.h:@protocol PFSubclassing;
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Parse.framework/Headers/PFSubclassing.h: Classes conforming to this protocol should subclass <PFObject> and
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Parse.framework/Headers/PFSubclassing.h:@protocol PFSubclassing
+Binary file ./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/Parse.framework/Parse matches
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFLogInViewController.h:@protocol PFLogInViewControllerDelegate;
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFLogInViewController.h: The `PFLogInViewControllerDelegate` protocol defines methods a delegate of a <PFLogInViewController> should implement.
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFLogInViewController.h: All methods of this protocol are optional.
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFLogInViewController.h:@protocol PFLogInViewControllerDelegate <NSObject>
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFSignUpViewController.h:@protocol PFSignUpViewControllerDelegate;
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFSignUpViewController.h: The `PFLogInViewControllerDelegate` protocol defines methods a delegate of a <PFSignUpViewController> should implement.
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFSignUpViewController.h: All methods of this protocol are optional.
+./Final Project/AnyApp/AnyAppLogin/AnyAppLogin.xcodeproj/ParseUI.framework/Headers/PFSignUpViewController.h:@protocol PFSignUpViewControllerDelegate <NSObject>
+./Final Project/Geo/GeoPOS-Vendor/SwiftyJSON.swift:public protocol SubscriptType {}
+./Final Project/Login/Bolts.framework/Headers/BFAppLink.h:/*! The version of the App Link protocol that this library supports */
+./Final Project/Login/Bolts.framework/Headers/BFAppLink.h: Generally, this will only be used by implementers of the BFAppLinkResolving protocol,
+./Final Project/Login/Bolts.framework/Headers/BFAppLinkNavigation.h:@protocol BFAppLinkResolving;
+./Final Project/Login/Bolts.framework/Headers/BFAppLinkResolving.h: Implement this protocol to provide an alternate strategy for resolving
+./Final Project/Login/Bolts.framework/Headers/BFAppLinkResolving.h:@protocol BFAppLinkResolving <NSObject>
+./Final Project/Login/Bolts.framework/Headers/BFAppLinkReturnToRefererController.h:@protocol BFAppLinkReturnToRefererControllerDelegate <NSObject>
+./Final Project/Login/Bolts.framework/Headers/BFAppLinkReturnToRefererView.h:@protocol BFAppLinkReturnToRefererViewDelegate <NSObject>
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLink.h:/*! The version of the App Link protocol that this library supports */
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLink.h: Generally, this will only be used by implementers of the BFAppLinkResolving protocol,
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLinkNavigation.h:@protocol BFAppLinkResolving;
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLinkResolving.h: Implement this protocol to provide an alternate strategy for resolving
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLinkResolving.h:@protocol BFAppLinkResolving <NSObject>
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLinkReturnToRefererController.h:@protocol BFAppLinkReturnToRefererControllerDelegate <NSObject>
+./Final Project/Login/Bolts.framework/Versions/A/Headers/BFAppLinkReturnToRefererView.h:@protocol BFAppLinkReturnToRefererViewDelegate <NSObject>
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLink.h:/*! The version of the App Link protocol that this library supports */
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLink.h: Generally, this will only be used by implementers of the BFAppLinkResolving protocol,
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLinkNavigation.h:@protocol BFAppLinkResolving;
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLinkResolving.h: Implement this protocol to provide an alternate strategy for resolving
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLinkResolving.h:@protocol BFAppLinkResolving <NSObject>
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLinkReturnToRefererController.h:@protocol BFAppLinkReturnToRefererControllerDelegate <NSObject>
+./Final Project/Login/Bolts.framework/Versions/Current/Headers/BFAppLinkReturnToRefererView.h:@protocol BFAppLinkReturnToRefererViewDelegate <NSObject>
+./Final Project/Login/Login/LoginViewController.swift:protocol LoginViewControllerDelegate {
+./Final Project/Login/Parse.framework/Headers/PFObject+Subclass.h: Strongly-typed subclasses of `PFObject` must conform to the <PFSubclassing> protocol
+./Final Project/Login/Parse.framework/Headers/PFObject.h:@protocol PFSubclassing;
+./Final Project/Login/Parse.framework/Headers/PFSubclassing.h: Classes conforming to this protocol should subclass <PFObject> and
+./Final Project/Login/Parse.framework/Headers/PFSubclassing.h:@protocol PFSubclassing
+Binary file ./Final Project/Login/Parse.framework/Parse matches
+./Final Project/Login/ParseUI.framework/Headers/PFLogInViewController.h:@protocol PFLogInViewControllerDelegate;
+./Final Project/Login/ParseUI.framework/Headers/PFLogInViewController.h: The `PFLogInViewControllerDelegate` protocol defines methods a delegate of a <PFLogInViewController> should implement.
+./Final Project/Login/ParseUI.framework/Headers/PFLogInViewController.h: All methods of this protocol are optional.
+./Final Project/Login/ParseUI.framework/Headers/PFLogInViewController.h:@protocol PFLogInViewControllerDelegate <NSObject>
+./Final Project/Login/ParseUI.framework/Headers/PFSignUpViewController.h:@protocol PFSignUpViewControllerDelegate;
+./Final Project/Login/ParseUI.framework/Headers/PFSignUpViewController.h: The `PFLogInViewControllerDelegate` protocol defines methods a delegate of a <PFSignUpViewController> should implement.
+./Final Project/Login/ParseUI.framework/Headers/PFSignUpViewController.h: All methods of this protocol are optional.
+./Final Project/Login/ParseUI.framework/Headers/PFSignUpViewController.h:@protocol PFSignUpViewControllerDelegate <NSObject>
+./Midterm/Calc/Calc/Calc/Ops.swift:protocol RawOperations {
