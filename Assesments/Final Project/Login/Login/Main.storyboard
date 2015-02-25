@@ -135,7 +135,7 @@
                                                             </mask>
                                                         </variation>
                                                         <connections>
-                                                            <action selector="skipToSignupButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tnd-cz-nEr"/>
+                                                            <segue destination="gd7-za-lTf" kind="show" id="JeM-rE-27x"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -247,7 +247,6 @@
                         <outlet property="scrollView" destination="Mi5-Ay-ZXN" id="o2U-wm-DxP"/>
                         <outlet property="spinner" destination="XVZ-pg-aSy" id="TR1-cO-Ui3"/>
                         <outlet property="username" destination="zPj-kp-BMo" id="0wE-FG-z3F"/>
-                        <segue destination="gd7-za-lTf" kind="show" identifier="signup" id="rvA-iV-FVw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

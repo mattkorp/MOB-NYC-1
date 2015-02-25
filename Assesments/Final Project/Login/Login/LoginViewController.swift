@@ -51,9 +51,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    @IBAction func skipToSignupButton(sender: UIButton) {
-        self.performSegueWithIdentifier("signup", sender: self)
-    }
+//    @IBAction func skipToSignupButton(sender: UIButton) {
+//        self.performSegueWithIdentifier("signup", sender: self)
+//    }
     @IBAction func skipToAppButton(sender: UIButton) {
         // TODO: go to main UI without user
     }
@@ -69,12 +69,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseInOut, animations: { self.loginSuccessErrorLabel.alpha = 1.0 }, completion: { _ in UIView.animateWithDuration(5.0) { self.loginSuccessErrorLabel.alpha = 0.0 } })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "signup" {
-            var signUpVC = segue.destinationViewController as SignUpViewController
-//            self.navigationController?.pushViewController(signUpVC, animated: true)
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "signup" {
+//            var signUpVC = segue.destinationViewController as SignUpViewController
+////            self.navigationController?.pushViewController(signUpVC, animated: true)
+//        }
+//    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.username {
