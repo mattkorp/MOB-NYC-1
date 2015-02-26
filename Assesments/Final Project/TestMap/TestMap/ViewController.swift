@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, GMSMapViewDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var camera = GMSCameraPosition.cameraWithLatitude(-33.868,
