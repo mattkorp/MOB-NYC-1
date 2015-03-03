@@ -10,7 +10,10 @@ import SwiftyJSON
 // Let asynchronous code run
 XCPSetExecutionShouldContinueIndefinitely()
 
+
+
 //TODO one: Write and call a function that make a successful network connection to google.com using core networking APIs, then print out the results.
+
 
 if let url = NSURL(string: "http:www.google.com") {
     let task = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error)  in
@@ -25,6 +28,7 @@ if let url = NSURL(string: "http:www.google.com") {
         println(string)
     }
     task.resume()
+
 }
 
 //TODO two: Write and call a function that makes a failing network connection (using core networking APIs) to http://generalassemb.ly/foobar.baz, a nonexistant page. Print out the status code and body of the response.
@@ -52,20 +56,20 @@ struct Coordinates: Printable {
     var lat: Double!
     var lon: Double!
     var description: String {
-        return "Coordinates: Latitude: \(lat) Longitude: \(lon)"
+        return "Coordinates: Latitude: \(lat) Longitude: \(lon) "
     }
 }
 struct Sys: Printable {
     var sunrise: Int!
     var sunset: Int!
     var description: String {
-        return "Sunrise: \(sunrise) Sunset: \(sunset)"
+        return "Sunrise: \(sunrise) Sunset: \(sunset) "
     }
 }
 struct Desc: Printable {
     var desc: String!
     var description: String {
-        return "Description: \(desc)"
+        return "Description: \(desc) "
     }
 }
 struct Main: Printable {
@@ -75,31 +79,31 @@ struct Main: Printable {
     var pressure: Double!
     var humidity: Int!
     var description: String {
-        return "Temperature: \(temp) Min: \(temp_min) Max \(temp_max) Pressure: \(pressure) Humidity: \(humidity)"
+        return "Temperature: \(temp) Min: \(temp_min) Max \(temp_max) Pressure: \(pressure) Humidity: \(humidity) "
     }
 }
 struct Wind: Printable {
     var speed: Double!
     var deg: Double!
     var description: String {
-        return "Wind: Speed: \(speed) Degree: \(deg)"
+        return "Wind: Speed: \(speed) Degree: \(deg) "
     }
 }
 struct Clouds: Printable {
     var clouds: Int!
     var description: String {
-        return "Clouds: \(clouds)"
+        return "Clouds: \(clouds) "
     }
 }
 
-class Weather {
+class Weather: Printable {
     
-    let coordinates: Coordinates?
-    let sys: Sys?
-    let weather: Desc?
-    let main: Main?
-    let wind: Wind?
-    let clouds: Clouds?
+    let coordinates: Coordinates!
+    let sys: Sys!
+    let weather: Desc!
+    let main: Main!
+    let wind: Wind!
+    let clouds: Clouds!
     
     
     init(coordinates: Coordinates,sys: Sys, weather: Desc, main: Main, wind: Wind, clouds: Clouds) {
@@ -111,13 +115,13 @@ class Weather {
         self.clouds = clouds
     }
     
-    func description() {
-        println(self.coordinates!.description)
-        println(self.sys!.description)
-        println(self.weather!.description)
-        println(self.main!.description)
-        println(self.wind!.description)
-        println(self.clouds!.description)
+    var description: String {
+        return coordinates.description
+        + self.sys.description
+        + self.weather.description
+        + self.main.description
+        + self.wind.description
+        + self.clouds.description
     }
     
 }
@@ -182,7 +186,7 @@ if let url = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?q=New
                     }
                 }
                 let weather = Weather(coordinates: c, sys: s, weather: d, main: m, wind: w, clouds: cov)
-                weather.description()
+                println(weather.description)
             }
         }
     }
@@ -212,13 +216,67 @@ if let url = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?q=New
             cov = Clouds(clouds: json["clouds"]["all"].int)
 
             let weather = Weather(coordinates: c, sys: s, weather: d, main: m, wind: w, clouds: cov)
-            weather.description()
+            print(weather.description)
         }
     }
     task.resume()
 }
 
 
+class Downloader {
+    let url: NSURL
+    var running = false
+    lazy var session: NSURLSession = NSURLSession.sharedSession()
+    typealias JSONArrayCompletion = (AnyObject?) -> ()
+    
+    init(_ url: String) {
+        self.url = NSURL(string: url)!
+    }
+    
+    func getJson(completion: JSONArrayCompletion) {
+        let task = session.dataTaskWithURL(url) {
+            (let data, let response, let error) in
+            if let response = response as? NSHTTPURLResponse {
+                println("got data")
+                switch(response.statusCode) {
+                case 200:
+                    self.parseJson(data, completion)
+                default:
+                    println("\(response.statusCode)")
+                }
+            } else {
+                println("don't know how to handle")
+            }
+            self.running = false
+        }
+        running = true
+        task.resume()
+    }
+    
+    func parseJson(data: NSData, completion: JSONArrayCompletion) {
+        completion(nil)
+        var error: NSError?
+        let json: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error)!
+        if error != nil {
+            println("error parsing json")
+            completion(nil)
+        } else {
+            print(json)
+            completion(json)
+        }
+    }
+}
+
+let downloader = Downloader("http://api.openweathermap.org/data/2.5/weather?q=New%20York,US")
+downloader.getJson() {
+    (let data) in
+    println("received \(data)")
+}
+
+while downloader.running {
+    println("waiting..")
+    sleep(1)
+}
 
 
 

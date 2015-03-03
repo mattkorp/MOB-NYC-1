@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class ProgrammaticVC: UIViewController {
   
   lazy var scrollView: UIScrollView = {
@@ -27,6 +26,11 @@ class ProgrammaticVC: UIViewController {
     
     self.view.addSubview(scrollView)
     self.scrollView.addSubview(littleView)
+    
   }
   
+//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+//        self.scrollView.setNeedsDisplay()
+//        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+//    }
 }
